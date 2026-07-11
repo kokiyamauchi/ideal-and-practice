@@ -17,7 +17,7 @@ export default function Reveal() {
     
     // Stagger setup for hero
     document.querySelectorAll('.js-hero-stagger').forEach((el, i) => {
-      (el as HTMLElement).style.transitionDelay = `${i * 400}ms`;
+      (el as HTMLElement).style.transitionDelay = `${i * 600}ms`;
     });
   }, []);
   return null;
