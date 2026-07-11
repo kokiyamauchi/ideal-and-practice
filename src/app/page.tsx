@@ -9,7 +9,7 @@ const S = {
 
 export default function Home() {
   return (
-    <main style={{ background: "#fafafa", color: "#111", ...S.sans }}>
+    <main style={{ background: "#F7F4ED", color: "#111", ...S.sans }}>
       <Reveal />
 
       {/* ── Nav ── */}
@@ -47,7 +47,7 @@ export default function Home() {
       {/* ── Hero ── */}
       <section style={{
         minHeight: "100vh", display: "flex", flexDirection: "column",
-        justifyContent: "center", padding: "160px 48px 80px", background: "#fafafa"
+        justifyContent: "center", padding: "160px 48px 80px", background: "#F7F4ED"
       }}>
         {/* Index row */}
         <div style={{
@@ -56,8 +56,8 @@ export default function Home() {
           marginBottom: "72px", fontSize: "12px", fontWeight: 500,
           color: "#666", letterSpacing: "0.10em"
         }}>
-          <span>第一章 ／ 人の理想を行動と組織へ</span>
-          <span>A HAKUYU BUSINESS — EST. 2026</span>
+          <span>A HAKUYU BUSINESS</span>
+          <span>Based on LHMP</span>
         </div>
 
         {/* Grid */}
@@ -110,7 +110,7 @@ export default function Home() {
       </section>
 
       {/* ── Problems ── */}
-      <section className="js-reveal" style={{ padding: "160px 48px", background: "#fafafa", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
+      <section className="js-reveal" style={{ padding: "160px 48px", background: "#F7F4ED", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 3fr", gap: "80px", alignItems: "start" }}>
           <div>
             <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", color: "#999", textTransform: "uppercase", marginBottom: "16px" }}>Problems</p>
@@ -141,7 +141,7 @@ export default function Home() {
       </section>
 
       {/* ── 3 Domains ── */}
-      <section className="js-reveal" style={{ padding: "160px 48px", background: "#f0f0f0" }}>
+      <section className="js-reveal" style={{ padding: "160px 48px", background: "#F7F4ED" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 3fr", gap: "80px", alignItems: "start" }}>
           <div>
             <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", color: "#999", textTransform: "uppercase", marginBottom: "16px" }}>3 Domains</p>
@@ -174,7 +174,7 @@ export default function Home() {
       </section>
 
       {/* ── Process ── */}
-      <section className="js-reveal" style={{ padding: "160px 48px", background: "#fafafa", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
+      <section className="js-reveal" style={{ padding: "160px 48px", background: "#F7F4ED", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 3fr", gap: "80px", alignItems: "start" }}>
           <div>
             <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", color: "#999", textTransform: "uppercase", marginBottom: "16px" }}>Process</p>
