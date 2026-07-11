@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 
 const S = {
   serif: { fontFamily: "var(--font-display, 'Zen Old Mincho', serif)" } as React.CSSProperties,
@@ -9,6 +10,7 @@ const S = {
 export default function Home() {
   return (
     <main style={{ background: "#fafafa", color: "#111", ...S.sans }}>
+      <Reveal />
 
       {/* ── Nav ── */}
       <nav style={{
@@ -61,17 +63,17 @@ export default function Home() {
         {/* Grid */}
         <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "80px", alignItems: "end", maxWidth: "1400px" }}>
           <div>
-            <h1 style={{ ...S.serif, fontSize: "clamp(52px, 7vw, 108px)", lineHeight: 1.15, fontWeight: 500, letterSpacing: "0.01em", color: "#111" }}>
+            <h1 className="js-hero-stagger" style={{ ...S.serif, fontSize: "clamp(40px, 5.5vw, 84px)", lineHeight: 1.15, fontWeight: 500, letterSpacing: "0.01em", color: "#111" }}>
               自分の理想を描き、<br />
               仕事と組織を、<br />
               自分の人生へ<br />
               接続する。
             </h1>
-            <span style={{ ...S.serifEn, fontSize: "20px", color: "#666", marginTop: "28px", display: "block" }}>
+            <span className="js-hero-stagger" style={{ ...S.serifEn, fontSize: "20px", color: "#666", marginTop: "28px", display: "block" }}>
               — learning for the life you actually want.
             </span>
           </div>
-          <div>
+          <div className="js-hero-stagger">
             <p style={{ fontSize: "17px", lineHeight: 2.05, color: "#111", marginBottom: "40px" }}>
               白裕の中核思想「LHMP／幸福最大化思想体系」を基盤に、<br />
               人生・主体性・事業管理を学び、<br />
@@ -108,11 +110,11 @@ export default function Home() {
       </section>
 
       {/* ── Problems ── */}
-      <section style={{ padding: "160px 48px", background: "#fafafa", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
+      <section className="js-reveal" style={{ padding: "160px 48px", background: "#fafafa", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 3fr", gap: "80px", alignItems: "start" }}>
           <div>
             <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", color: "#999", textTransform: "uppercase", marginBottom: "16px" }}>Problems</p>
-            <h2 style={{ ...S.serif, fontSize: "30px", fontWeight: 500, color: "#333", marginTop: "16px" }}>組織と個人の間の<br />摩擦。</h2>
+            <h2 style={{ ...S.serif, fontSize: "28px", fontWeight: 500, color: "#333", marginTop: "16px" }}>組織と個人の間の<br />摩擦。</h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", borderTop: "1px solid rgba(0,0,0,0.22)" }}>
             {[
@@ -130,7 +132,7 @@ export default function Home() {
                 borderBottom: "1px solid rgba(0,0,0,0.08)",
                 borderRight: i % 3 < 2 ? "1px solid rgba(0,0,0,0.08)" : "none"
               }}>
-                <span style={{ ...S.serif, fontSize: "40px", lineHeight: 1, fontWeight: 500, color: "#333", display: "block" }}>{item.n}</span>
+                <span style={{ ...S.serif, fontSize: "36px", lineHeight: 1, fontWeight: 500, color: "#333", display: "block" }}>{item.n}</span>
                 <p style={{ fontSize: "16px", fontWeight: 500, lineHeight: 1.75, color: "#111", marginTop: "16px" }}>{item.text}</p>
               </div>
             ))}
@@ -139,11 +141,11 @@ export default function Home() {
       </section>
 
       {/* ── 3 Domains ── */}
-      <section style={{ padding: "160px 48px", background: "#f0f0f0" }}>
+      <section className="js-reveal" style={{ padding: "160px 48px", background: "#f0f0f0" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 3fr", gap: "80px", alignItems: "start" }}>
           <div>
             <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", color: "#999", textTransform: "uppercase", marginBottom: "16px" }}>3 Domains</p>
-            <h2 style={{ ...S.serif, fontSize: "30px", fontWeight: 500, color: "#333", marginTop: "16px" }}>研修の<br />3領域。</h2>
+            <h2 style={{ ...S.serif, fontSize: "28px", fontWeight: 500, color: "#333", marginTop: "16px" }}>研修の<br />3領域。</h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", borderTop: "1px solid rgba(0,0,0,0.22)" }}>
             {[
@@ -159,7 +161,7 @@ export default function Home() {
                 display: "flex", flexDirection: "column"
               }}>
                 <span style={{ fontSize: "11px", letterSpacing: "0.15em", color: "#999", marginBottom: "20px" }}>{domain.en}</span>
-                <h3 style={{ ...S.serif, fontSize: "30px", fontWeight: 500, color: "#111", marginBottom: "20px" }}>{domain.ja}</h3>
+                <h3 style={{ ...S.serif, fontSize: "26px", fontWeight: 500, color: "#111", marginBottom: "20px" }}>{domain.ja}</h3>
                 <p style={{ fontSize: "15px", lineHeight: 2.0, color: "#666", flexGrow: 1, marginBottom: "28px" }}>{domain.desc}</p>
                 <Link href={domain.href} style={{
                   fontSize: "14px", fontWeight: 500, color: "#111",
@@ -172,11 +174,11 @@ export default function Home() {
       </section>
 
       {/* ── Process ── */}
-      <section style={{ padding: "160px 48px", background: "#fafafa", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
+      <section className="js-reveal" style={{ padding: "160px 48px", background: "#fafafa", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 3fr", gap: "80px", alignItems: "start" }}>
           <div>
             <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", color: "#999", textTransform: "uppercase", marginBottom: "16px" }}>Process</p>
-            <h2 style={{ ...S.serif, fontSize: "30px", fontWeight: 500, color: "#333", marginTop: "16px" }}>提供<br />プロセス。</h2>
+            <h2 style={{ ...S.serif, fontSize: "28px", fontWeight: 500, color: "#333", marginTop: "16px" }}>提供<br />プロセス。</h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", borderTop: "1px solid rgba(0,0,0,0.22)" }}>
             {[
@@ -194,7 +196,7 @@ export default function Home() {
                 borderBottom: "1px solid rgba(0,0,0,0.08)",
                 borderRight: i % 3 < 2 ? "1px solid rgba(0,0,0,0.08)" : "none"
               }}>
-                <span style={{ ...S.serif, fontSize: "40px", lineHeight: 1, fontWeight: 500, color: "#333", display: "block" }}>{p.step}</span>
+                <span style={{ ...S.serif, fontSize: "36px", lineHeight: 1, fontWeight: 500, color: "#333", display: "block" }}>{p.step}</span>
                 <p style={{ fontSize: "16px", fontWeight: 500, lineHeight: 1.75, color: "#111", marginTop: "16px" }}>{p.name}</p>
               </div>
             ))}
@@ -203,10 +205,10 @@ export default function Home() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ padding: "120px 48px", background: "#111", color: "#fafafa" }}>
+      <section className="js-reveal" style={{ padding: "120px 48px", background: "#111", color: "#fafafa" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}>
           <div>
-            <h2 style={{ ...S.serif, fontSize: "clamp(36px, 4vw, 56px)", fontWeight: 500, lineHeight: 1.3, marginBottom: "24px" }}>
+            <h2 style={{ ...S.serif, fontSize: "clamp(30px, 3.5vw, 48px)", fontWeight: 500, lineHeight: 1.3, marginBottom: "24px" }}>
               まず、話してみてください。
             </h2>
             <span style={{ ...S.serifEn, fontSize: "18px", color: "rgba(255,255,255,0.5)" }}>
