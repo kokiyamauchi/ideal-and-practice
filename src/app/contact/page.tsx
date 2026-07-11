@@ -16,7 +16,7 @@ export default function Contact() {
         </p>
         <div className="w-full bg-background rounded-3xl overflow-hidden shadow-sm border border-border p-2 md:p-8 mb-12">
             <iframe 
-                src="https://docs.google.com/forms/d/e/PLACEHOLDER_URL/viewform?embedded=true" 
+                src="https://docs.google.com/forms/d/e/1FAIpQLSeuxOuh50S3mxsJSfkswwnHrbi2jE2oYLtu8nXpEE-uBg2kKQ/viewform?embedded=true" 
                 width="100%" 
                 height="1000" 
                 frameBorder="0" 
