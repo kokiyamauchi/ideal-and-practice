@@ -9,7 +9,7 @@ const S = {
 
 export default function Home() {
   return (
-    <main style={{ background: "#F7F4ED", color: "#111", ...S.sans }}>
+    <main style={{ background: "#fafafa", color: "#111", ...S.sans }}>
       <Reveal />
 
       {/* ── Nav ── */}
@@ -47,7 +47,7 @@ export default function Home() {
       {/* ── Hero ── */}
       <section style={{
         minHeight: "100vh", display: "flex", flexDirection: "column",
-        justifyContent: "center", padding: "160px 48px 80px", background: "#F7F4ED"
+        justifyContent: "center", padding: "160px 48px 80px", background: "#fafafa"
       }}>
         {/* Index row */}
         <div style={{
@@ -110,7 +110,7 @@ export default function Home() {
       </section>
 
       {/* ── Problems ── */}
-      <section className="js-reveal" style={{ padding: "160px 48px", background: "#F7F4ED", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
+      <section className="js-reveal" style={{ padding: "160px 48px", background: "#fafafa", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 3fr", gap: "80px", alignItems: "start" }}>
           <div>
             <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", color: "#999", textTransform: "uppercase", marginBottom: "16px" }}>Problems</p>
@@ -141,7 +141,7 @@ export default function Home() {
       </section>
 
       {/* ── 3 Domains ── */}
-      <section className="js-reveal" style={{ padding: "160px 48px", background: "#F7F4ED" }}>
+      <section className="js-reveal" style={{ padding: "160px 48px", background: "#fafafa" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 3fr", gap: "80px", alignItems: "start" }}>
           <div>
             <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", color: "#999", textTransform: "uppercase", marginBottom: "16px" }}>3 Domains</p>
@@ -174,7 +174,7 @@ export default function Home() {
       </section>
 
       {/* ── Process ── */}
-      <section className="js-reveal" style={{ padding: "160px 48px", background: "#F7F4ED", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
+      <section className="js-reveal" style={{ padding: "160px 48px", background: "#fafafa", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 3fr", gap: "80px", alignItems: "start" }}>
           <div>
             <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", color: "#999", textTransform: "uppercase", marginBottom: "16px" }}>Process</p>
