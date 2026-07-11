@@ -1,17 +1,24 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Zen_Old_Mincho } from "next/font/google";
+import { Noto_Sans_JP, Zen_Old_Mincho, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const zenOldMincho = Zen_Old_Mincho({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-serif-en",
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -30,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${notoSansJP.variable} ${zenOldMincho.variable} font-sans antialiased`}
+        className={`${notoSansJP.variable} ${zenOldMincho.variable} ${instrumentSerif.variable} antialiased`}
       >
         {children}
       </body>

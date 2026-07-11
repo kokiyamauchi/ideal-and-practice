@@ -1,165 +1,249 @@
 import Link from "next/link";
 
+const S = {
+  serif: { fontFamily: "var(--font-display, 'Zen Old Mincho', serif)" } as React.CSSProperties,
+  serifEn: { fontFamily: "var(--font-serif-en, 'Instrument Serif', serif)", fontStyle: "italic" } as React.CSSProperties,
+  sans: { fontFamily: "var(--font-sans, 'Noto Sans JP', sans-serif)" } as React.CSSProperties,
+};
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground font-sans">
-      
-      {/* Header Placeholder */}
-      <header className="px-6 py-6 border-b border-border flex justify-between items-center bg-background/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="font-display font-bold text-xl tracking-wide">
-          <Link href="/">理想と実践</Link>
-        </div>
-        <nav className="hidden md:flex gap-6 text-sm font-bold text-muted">
-          <Link href="/about" className="hover:text-primary">About</Link>
-          <Link href="/lhmp" className="hover:text-primary">LHMP</Link>
-          <Link href="/programs" className="hover:text-primary">研修一覧</Link>
-          <Link href="/corporate" className="hover:text-primary">法人向け</Link>
-          <Link href="/contact" className="hover:text-primary">お問い合わせ</Link>
-        </nav>
-      </header>
+    <main style={{ background: "#fafafa", color: "#111", ...S.sans }}>
 
-      {/* Hero Section */}
-      <section className="px-6 py-24 md:py-32 max-w-5xl mx-auto text-center">
-        <div className="inline-block border border-border px-4 py-1 mb-8">
-          <p className="text-[10px] font-bold text-accent uppercase tracking-[0.3em] whitespace-pre-line leading-relaxed text-center">
-            A HAKUYU BUSINESS{"\n"}Based on LHMP
-          </p>
+      {/* ── Nav ── */}
+      <nav style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
+        padding: "28px 48px",
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        ...S.sans
+      }} id="main-nav">
+        <Link href="/" style={{ ...S.serif, fontSize: "20px", fontWeight: 500, color: "#111", letterSpacing: "0.01em" }}>
+          理想と実践
+        </Link>
+        <div style={{ display: "flex", alignItems: "center", gap: "36px" }}>
+          {[
+            { label: "About", href: "/about" },
+            { label: "LHMP", href: "/lhmp" },
+            { label: "研修一覧", href: "/programs" },
+            { label: "法人向け", href: "/corporate" },
+          ].map(l => (
+            <Link key={l.href} href={l.href} style={{ fontSize: "14px", fontWeight: 500, color: "#111" }}
+              className="hover:opacity-50 transition-opacity">{l.label}</Link>
+          ))}
+          <Link href="/contact" style={{
+            fontSize: "13px", fontWeight: 500,
+            padding: "10px 20px",
+            border: "1px solid #111",
+            color: "#111",
+            transition: "background 0.3s, color 0.3s"
+          }} className="hover:bg-foreground hover:text-white">
+            お問い合わせ
+          </Link>
         </div>
-        
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight mb-10 leading-[1.2]">
-          自分の理想を描き、<br />
-          仕事と組織を、<br />
-          自分の人生へ接続する。
-        </h1>
-        
-        <p className="text-lg md:text-xl text-muted leading-loose mb-12 max-w-3xl mx-auto">
-          白裕の中核思想「LHMP／幸福最大化思想体系」を基盤に、<br />
-          人生・主体性・事業管理を学び、<br />
-          理解を行動と組織の仕組みへ変える研修を提供します。
-        </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/contact" className="btn btn-primary">法人研修を相談する</Link>
-          <Link href="/programs" className="btn btn-outline">研修一覧を見る</Link>
-          <Link href="/lhmp" className="text-primary font-bold underline underline-offset-4 ml-0 sm:ml-4 flex items-center justify-center">LHMPを知る →</Link>
+      </nav>
+
+      {/* ── Hero ── */}
+      <section style={{
+        minHeight: "100vh", display: "flex", flexDirection: "column",
+        justifyContent: "center", padding: "160px 48px 80px", background: "#fafafa"
+      }}>
+        {/* Index row */}
+        <div style={{
+          display: "flex", justifyContent: "space-between", alignItems: "center",
+          paddingBottom: "24px", borderBottom: "1px solid rgba(0,0,0,0.10)",
+          marginBottom: "72px", fontSize: "12px", fontWeight: 500,
+          color: "#666", letterSpacing: "0.10em"
+        }}>
+          <span>第一章 ／ 人の理想を行動と組織へ</span>
+          <span>A HAKUYU BUSINESS — EST. 2026</span>
+        </div>
+
+        {/* Grid */}
+        <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "80px", alignItems: "end", maxWidth: "1400px" }}>
+          <div>
+            <h1 style={{ ...S.serif, fontSize: "clamp(52px, 7vw, 108px)", lineHeight: 1.15, fontWeight: 500, letterSpacing: "0.01em", color: "#111" }}>
+              自分の理想を描き、<br />
+              仕事と組織を、<br />
+              自分の人生へ<br />
+              接続する。
+            </h1>
+            <span style={{ ...S.serifEn, fontSize: "20px", color: "#666", marginTop: "28px", display: "block" }}>
+              — learning for the life you actually want.
+            </span>
+          </div>
+          <div>
+            <p style={{ fontSize: "17px", lineHeight: 2.05, color: "#111", marginBottom: "40px" }}>
+              白裕の中核思想「LHMP／幸福最大化思想体系」を基盤に、<br />
+              人生・主体性・事業管理を学び、<br />
+              理解を行動と組織の仕組みへ変える研修を提供します。
+            </p>
+            <Link href="/contact" style={{
+              display: "inline-block", background: "#111", color: "#fafafa",
+              padding: "16px 28px", fontSize: "15px", fontWeight: 500,
+              border: "1px solid #111", marginBottom: "24px",
+              transition: "background 0.3s, color 0.3s"
+            }} className="hover:bg-transparent hover:text-[#111]">
+              法人研修を相談する →
+            </Link>
+            <Link href="/programs" style={{
+              display: "block", fontSize: "14px", fontWeight: 500, color: "#111",
+              borderBottom: "1px solid #111", paddingBottom: "4px",
+              width: "fit-content"
+            }} className="hover:opacity-50 transition-opacity">
+              研修一覧を見る
+            </Link>
+          </div>
+        </div>
+
+        {/* Marker */}
+        <div style={{
+          display: "flex", justifyContent: "space-between", alignItems: "center",
+          marginTop: "120px", paddingTop: "24px", borderTop: "1px solid rgba(0,0,0,0.10)",
+          fontSize: "12px", fontWeight: 500, color: "#666", letterSpacing: "0.10em"
+        }}>
+          <span>IDEAL AND PRACTICE</span>
+          <span style={{ ...S.serif, fontSize: "14px", fontWeight: 400 }}>Based on LHMP</span>
+          <span>2026</span>
         </div>
       </section>
 
-      {/* Problems Section */}
-      <section className="bg-surface py-20 px-6 border-y border-border">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-display font-bold mb-12">組織と個人の間に、このような摩擦はありませんか？</h2>
-          <div className="grid md:grid-cols-2 gap-x-8 gap-y-4 text-left">
+      {/* ── Problems ── */}
+      <section style={{ padding: "160px 48px", background: "#fafafa", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 3fr", gap: "80px", alignItems: "start" }}>
+          <div>
+            <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", color: "#999", textTransform: "uppercase", marginBottom: "16px" }}>Problems</p>
+            <h2 style={{ ...S.serif, fontSize: "30px", fontWeight: 500, color: "#333", marginTop: "16px" }}>組織と個人の間の<br />摩擦。</h2>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", borderTop: "1px solid rgba(0,0,0,0.22)" }}>
             {[
-              "何のために働いているか分からない",
-              "会社の理念が社員の行動につながらない",
-              "「主体的に動け」と言っても変わらない",
-              "管理者が判断と仕事を抱え込んでいる",
-              "研修を実施しても現場へ定着しない",
-              "システムを導入しても運用が続かない"
-            ].map((problem, i) => (
-              <div key={i} className="flex items-start gap-3 p-4 bg-background border border-border">
-                <span className="text-accent font-bold mt-1">✔</span>
-                <span className="text-muted font-medium">{problem}</span>
+              { n: "01", text: "何のために働いているか分からない" },
+              { n: "02", text: "会社の理念が社員の行動につながらない" },
+              { n: "03", text: "「主体的に動け」と言っても変わらない" },
+              { n: "04", text: "管理者が判断と仕事を抱え込んでいる" },
+              { n: "05", text: "研修を実施しても現場へ定着しない" },
+              { n: "06", text: "システムを導入しても運用が続かない" },
+            ].map((item, i) => (
+              <div key={i} style={{
+                padding: "40px 0",
+                paddingRight: i % 3 < 2 ? "36px" : 0,
+                paddingLeft: i % 3 > 0 ? "36px" : 0,
+                borderBottom: "1px solid rgba(0,0,0,0.08)",
+                borderRight: i % 3 < 2 ? "1px solid rgba(0,0,0,0.08)" : "none"
+              }}>
+                <span style={{ ...S.serif, fontSize: "40px", lineHeight: 1, fontWeight: 500, color: "#333", display: "block" }}>{item.n}</span>
+                <p style={{ fontSize: "16px", fontWeight: 500, lineHeight: 1.75, color: "#111", marginTop: "16px" }}>{item.text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3 Domains Section */}
-      <section className="py-24 px-6 max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-sm font-bold tracking-[0.2em] text-accent uppercase mb-4">3 Domains</h2>
-          <h3 className="text-3xl font-display font-bold">研修の3領域</h3>
-        </div>
-        
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              title: "人生OS",
-              desc: "自分の幸福・理想・判断基準を整える",
-              link: "/programs/life-os"
-            },
-            {
-              title: "人・組織OS",
-              desc: "理想と役割を接続し、主体性を生む",
-              link: "/programs/agency"
-            },
-            {
-              title: "事業管理OS",
-              desc: "仕事・情報・判断・レビューを整える",
-              link: "/programs/management-os"
-            }
-          ].map((domain, i) => (
-            <div key={i} className="bg-surface border border-border p-8 flex flex-col items-center text-center hover:border-primary transition-colors">
-              <h4 className="text-2xl font-display font-bold text-primary mb-4">{domain.title}</h4>
-              <p className="text-muted mb-8 flex-grow">{domain.desc}</p>
-              <Link href={domain.link} className="text-sm font-bold text-accent hover:text-primary transition-colors">詳細を見る →</Link>
-            </div>
-          ))}
+      {/* ── 3 Domains ── */}
+      <section style={{ padding: "160px 48px", background: "#f0f0f0" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 3fr", gap: "80px", alignItems: "start" }}>
+          <div>
+            <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", color: "#999", textTransform: "uppercase", marginBottom: "16px" }}>3 Domains</p>
+            <h2 style={{ ...S.serif, fontSize: "30px", fontWeight: 500, color: "#333", marginTop: "16px" }}>研修の<br />3領域。</h2>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", borderTop: "1px solid rgba(0,0,0,0.22)" }}>
+            {[
+              { en: "LIFE OS", ja: "人生OS", desc: "自分の幸福・理想・判断基準を整える。何のために生き、何を優先するのかを明確にします。", href: "/programs" },
+              { en: "AGENCY OS", ja: "人・組織OS", desc: "理想と役割を接続し、主体性を生む。個人と組織が自律的に動ける構造をつくります。", href: "/programs" },
+              { en: "MANAGEMENT OS", ja: "事業管理OS", desc: "仕事・情報・判断・レビューを整える。管理職が機能する組織の仕組みを設計します。", href: "/programs" },
+            ].map((domain, i) => (
+              <div key={i} style={{
+                padding: "48px 0",
+                paddingRight: i < 2 ? "48px" : 0,
+                paddingLeft: i > 0 ? "48px" : 0,
+                borderRight: i < 2 ? "1px solid rgba(0,0,0,0.08)" : "none",
+                display: "flex", flexDirection: "column"
+              }}>
+                <span style={{ fontSize: "11px", letterSpacing: "0.15em", color: "#999", marginBottom: "20px" }}>{domain.en}</span>
+                <h3 style={{ ...S.serif, fontSize: "30px", fontWeight: 500, color: "#111", marginBottom: "20px" }}>{domain.ja}</h3>
+                <p style={{ fontSize: "15px", lineHeight: 2.0, color: "#666", flexGrow: 1, marginBottom: "28px" }}>{domain.desc}</p>
+                <Link href={domain.href} style={{
+                  fontSize: "14px", fontWeight: 500, color: "#111",
+                  borderBottom: "1px solid #111", paddingBottom: "4px", width: "fit-content"
+                }} className="hover:opacity-50 transition-opacity">詳細を見る</Link>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="bg-primary text-surface py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-sm font-bold tracking-[0.2em] text-accent uppercase mb-4">Process</h2>
-            <h3 className="text-3xl font-display font-bold">提供プロセス</h3>
+      {/* ── Process ── */}
+      <section style={{ padding: "160px 48px", background: "#fafafa", borderTop: "1px solid rgba(0,0,0,0.10)" }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 3fr", gap: "80px", alignItems: "start" }}>
+          <div>
+            <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", color: "#999", textTransform: "uppercase", marginBottom: "16px" }}>Process</p>
+            <h2 style={{ ...S.serif, fontSize: "30px", fontWeight: 500, color: "#333", marginTop: "16px" }}>提供<br />プロセス。</h2>
           </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", borderTop: "1px solid rgba(0,0,0,0.22)" }}>
             {[
               { step: "01", name: "現状確認" },
               { step: "02", name: "研修設計" },
               { step: "03", name: "講義と演習" },
               { step: "04", name: "行動計画" },
               { step: "05", name: "30〜90日フォロー" },
-              { step: "06", name: "必要に応じて余白設計・IT実装へ接続" }
-            ].map((process, i) => (
-              <div key={i} className="flex flex-col border-t border-surface/20 pt-4">
-                <span className="text-accent font-display font-bold mb-2">{process.step}</span>
-                <span className="font-bold">{process.name}</span>
+              { step: "06", name: "必要に応じて余白設計・IT実装へ接続" },
+            ].map((p, i) => (
+              <div key={i} style={{
+                padding: "40px 0",
+                paddingRight: i % 3 < 2 ? "36px" : 0,
+                paddingLeft: i % 3 > 0 ? "36px" : 0,
+                borderBottom: "1px solid rgba(0,0,0,0.08)",
+                borderRight: i % 3 < 2 ? "1px solid rgba(0,0,0,0.08)" : "none"
+              }}>
+                <span style={{ ...S.serif, fontSize: "40px", lineHeight: 1, fontWeight: 500, color: "#333", display: "block" }}>{p.step}</span>
+                <p style={{ fontSize: "16px", fontWeight: 500, lineHeight: 1.75, color: "#111", marginTop: "16px" }}>{p.name}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Deliverables Section */}
-      <section className="py-24 px-6 bg-surface border-b border-border">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-sm font-bold tracking-[0.2em] text-accent uppercase mb-4">Deliverables</h2>
-          <h3 className="text-3xl font-display font-bold mb-12">主な成果物</h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {[
-              "個人理想整理シート",
-              "個人・法人ビジョン接続図",
-              "主体性ボトルネック診断",
-              "役割・権限整理表",
-              "週次レビュー設計",
-              "30日行動計画",
-              "研修実施レポート",
-              "90日定着レポート"
-            ].map((item, i) => (
-              <span key={i} className="px-6 py-3 bg-background border border-border text-sm font-bold text-muted">
-                {item}
-              </span>
-            ))}
+      {/* ── CTA ── */}
+      <section style={{ padding: "120px 48px", background: "#111", color: "#fafafa" }}>
+        <div style={{ maxWidth: "800px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}>
+          <div>
+            <h2 style={{ ...S.serif, fontSize: "clamp(36px, 4vw, 56px)", fontWeight: 500, lineHeight: 1.3, marginBottom: "24px" }}>
+              まず、話してみてください。
+            </h2>
+            <span style={{ ...S.serifEn, fontSize: "18px", color: "rgba(255,255,255,0.5)" }}>
+              — 30-minute free consultation.
+            </span>
+          </div>
+          <div>
+            <p style={{ fontSize: "16px", lineHeight: 2.0, color: "rgba(255,255,255,0.7)", marginBottom: "40px" }}>
+              現在の課題感や組織の状況をお聞きし、どの研修が合うかをご提案します。まずは30分の無料相談からお気軽にどうぞ。
+            </p>
+            <Link href="/contact" style={{
+              display: "inline-block", background: "#fafafa", color: "#111",
+              padding: "16px 32px", fontSize: "15px", fontWeight: 500,
+              border: "1px solid #fafafa", transition: "background 0.3s, color 0.3s"
+            }} className="hover:bg-transparent hover:text-white">
+              無料相談を申し込む →
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Footer Placeholder */}
-      <footer className="py-12 px-6 border-t border-border text-center text-sm text-muted">
-        <div className="mb-6 flex justify-center gap-4 text-xs font-bold uppercase tracking-widest">
-          <Link href="/privacy" className="hover:text-primary">Privacy</Link>
-          <Link href="/terms" className="hover:text-primary">Terms</Link>
-          <Link href="/commercial-transactions" className="hover:text-primary">Commercial Transactions</Link>
+      {/* ── Footer ── */}
+      <footer style={{ borderTop: "1px solid rgba(0,0,0,0.12)", padding: "40px 48px 28px", ...S.sans }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
+          <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
+            <Link href="/" style={{ ...S.serif, fontSize: "16px", fontWeight: 500 }}>理想と実践</Link>
+            <Link href="/about" style={{ fontSize: "13px", color: "#666" }} className="hover:opacity-60">About</Link>
+            <Link href="/programs" style={{ fontSize: "13px", color: "#666" }} className="hover:opacity-60">研修一覧</Link>
+            <Link href="/contact" style={{ fontSize: "13px", color: "#666" }} className="hover:opacity-60">お問い合わせ</Link>
+          </div>
+          <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
+            <span style={{ fontSize: "12px", color: "#999" }}>運営・思想監修：</span>
+            <a href="https://hakuyu.ltd" target="_blank" rel="noopener noreferrer"
+              style={{ fontSize: "13px", color: "#666" }} className="hover:opacity-60">白裕（Hakuyu）</a>
+            <span style={{ fontSize: "12px", color: "#999" }}>© 2026 白裕</span>
+          </div>
         </div>
-        <p className="mb-2">運営・思想監修：<a href="https://hakuyu.ltd" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-primary">白裕</a></p>
-        <p className="text-xs">&copy; 2026 白裕（Hakuyu）</p>
       </footer>
     </main>
   );
