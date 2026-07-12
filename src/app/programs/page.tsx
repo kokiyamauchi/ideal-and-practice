@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import SiteNav from "@/components/SiteNav";
 
 export const metadata: Metadata = {
   title: "法人研修プログラム・料金｜理想と実践",
@@ -156,21 +157,7 @@ export default function Programs() {
   return (
     <main style={{ background: "#fafafa", color: "#111", ...S.sans }}>
       {/* Nav */}
-      <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-        padding: "20px 48px", display: "flex", alignItems: "center", justifyContent: "space-between",
-        background: "rgba(250,250,250,0.9)", backdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(0,0,0,0.08)", ...S.sans
-      }}>
-        <Link href="/" style={{ ...S.serif, fontSize: "18px", fontWeight: 500 }}>理想と実践</Link>
-        <div style={{ display: "flex", gap: "32px", fontSize: "13px" }}>
-          <Link href="/about">About</Link>
-          <Link href="/lhmp">LHMP</Link>
-          <Link href="/programs" style={{ fontWeight: 700 }}>研修一覧</Link>
-          <Link href="/corporate">法人向け</Link>
-          <Link href="/contact" style={{ padding: "8px 18px", border: "1px solid #111" }}>お問い合わせ</Link>
-        </div>
-      </nav>
+      <SiteNav activeHref="/programs" />
 
       {/* Hero */}
       <section style={{ paddingTop: "140px", paddingBottom: "80px", paddingLeft: "48px", paddingRight: "48px", borderBottom: "1px solid rgba(0,0,0,0.10)" }}>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import SiteNav from "@/components/SiteNav";
 import { Suspense, useEffect } from "react";
 
 // Note: metadata cannot be exported from a Client Component.
@@ -40,24 +41,7 @@ export default function Contact() {
   return (
     <main style={{ minHeight: "100vh", background: "#fafafa", color: "#111", ...sans }}>
       {/* ── Nav ── */}
-      <header style={{
-        position: "sticky", top: 0, zIndex: 50,
-        padding: "20px 32px",
-        borderBottom: "1px solid rgba(0,0,0,0.10)",
-        background: "rgba(250,250,250,0.85)",
-        backdropFilter: "blur(12px)",
-        display: "flex", justifyContent: "space-between", alignItems: "center"
-      }}>
-        <Link href="/" style={{ ...serif, fontWeight: 700, fontSize: "1.1rem", letterSpacing: "0.04em" }}>
-          理想と実践
-        </Link>
-        <nav style={{ display: "flex", gap: "28px", fontSize: "0.875rem" }}>
-          <Link href="/about">About</Link>
-          <Link href="/lhmp">LHMP</Link>
-          <Link href="/programs">研修一覧</Link>
-          <Link href="/contact" style={{ fontWeight: 600 }}>お問い合わせ</Link>
-        </nav>
-      </header>
+      <SiteNav activeHref="/contact" />
 
       {/* ── Hero ── */}
       <section style={{

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import SiteNav from "@/components/SiteNav";
 
 const S = {
   serif: { fontFamily: "var(--font-display, 'Zen Old Mincho', serif)" } as React.CSSProperties,
@@ -13,36 +14,7 @@ export default function Home() {
       <Reveal />
 
       {/* ── Nav ── */}
-      <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-        padding: "28px 48px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        ...S.sans
-      }} id="main-nav">
-        <Link href="/" style={{ ...S.serif, fontSize: "20px", fontWeight: 500, color: "#111", letterSpacing: "0.01em" }}>
-          理想と実践
-        </Link>
-        <div style={{ display: "flex", alignItems: "center", gap: "36px" }}>
-          {[
-            { label: "About", href: "/about" },
-            { label: "LHMP", href: "/lhmp" },
-            { label: "研修一覧", href: "/programs" },
-            { label: "法人向け", href: "/corporate" },
-          ].map(l => (
-            <Link key={l.href} href={l.href} style={{ fontSize: "14px", fontWeight: 500, color: "#111" }}
-              className="hover:opacity-50 transition-opacity">{l.label}</Link>
-          ))}
-          <Link href="/contact" style={{
-            fontSize: "13px", fontWeight: 500,
-            padding: "10px 20px",
-            border: "1px solid #111",
-            color: "#111",
-            transition: "background 0.3s, color 0.3s"
-          }} className="hover:bg-foreground hover:text-white">
-            お問い合わせ
-          </Link>
-        </div>
-      </nav>
+      <SiteNav />
 
       {/* ── Hero ── */}
       <section style={{
