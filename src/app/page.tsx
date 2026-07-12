@@ -149,9 +149,9 @@ export default function Home() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", borderTop: "1px solid rgba(0,0,0,0.22)" }}>
             {[
-              { en: "LIFE OS", ja: "人生OS", desc: "自分の幸福・理想・判断基準を整える。何のために生き、何を優先するのかを明確にします。", href: "/programs" },
-              { en: "AGENCY OS", ja: "人・組織OS", desc: "理想と役割を接続し、主体性を生む。個人と組織が自律的に動ける構造をつくります。", href: "/programs" },
-              { en: "MANAGEMENT OS", ja: "事業管理OS", desc: "仕事・情報・判断・レビューを整える。管理職が機能する組織の仕組みを設計します。", href: "/programs" },
+              { en: "LIFE OS", ja: "人生OS", desc: "自分の幸福・理想・判断基準を整える。何のために生き、何を優先するのかを明確にします。", href: "/programs#人生OS領域" },
+              { en: "AGENCY OS", ja: "人・組織OS", desc: "理想と役割を接続し、主体性を生む。個人と組織が自律的に動ける構造をつくります。", href: "/programs#人・組織OS領域" },
+              { en: "MANAGEMENT OS", ja: "事業管理OS", desc: "仕事・情報・判断・レビューを整える。管理職が機能する組織の仕組みを設計します。", href: "/programs#事業管理OS領域" },
             ].map((domain, i) => (
               <div key={i} style={{
                 padding: "48px 0",
@@ -238,6 +238,9 @@ export default function Home() {
             <Link href="/about" style={{ fontSize: "13px", color: "#666" }} className="hover:opacity-60">About</Link>
             <Link href="/programs" style={{ fontSize: "13px", color: "#666" }} className="hover:opacity-60">研修一覧</Link>
             <Link href="/contact" style={{ fontSize: "13px", color: "#666" }} className="hover:opacity-60">お問い合わせ</Link>
+            <Link href="/privacy" style={{ fontSize: "13px", color: "#666" }} className="hover:opacity-60">プライバシーポリシー</Link>
+            <Link href="/terms" style={{ fontSize: "13px", color: "#666" }} className="hover:opacity-60">利用規約</Link>
+            <Link href="/faq" style={{ fontSize: "13px", color: "#666" }} className="hover:opacity-60">FAQ</Link>
           </div>
           <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
             <span style={{ fontSize: "12px", color: "#999" }}>運営・思想監修：</span>

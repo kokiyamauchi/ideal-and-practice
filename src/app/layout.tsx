@@ -23,8 +23,8 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: "理想と実践｜人生OS・主体性・事業管理研修",
-    template: "%s | 理想と実践"
+    default: "理想と実践｜LHMPを基盤にした人生OS・主体性・事業管理研修",
+    template: "%s ｜ 理想と実践",
   },
   description: "LHMPを基盤に、個人の理想形成、社員の主体性、管理職育成、事業管理、組織定着を支援する研修事業。",
 };

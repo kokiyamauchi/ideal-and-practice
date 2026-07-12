@@ -1,9 +1,42 @@
+"use client";
+
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect } from "react";
+
+// Note: metadata cannot be exported from a Client Component.
+// The title will be set via document.title in a useEffect.
 
 const serif = { fontFamily: "var(--font-display, 'Zen Old Mincho', serif)" };
 const sans = { fontFamily: "var(--font-sans, 'Noto Sans JP', sans-serif)" };
 
+// The Google form entry ID for pre-filling the program name would be needed here.
+// Assuming a placeholder 'entry.XXXXX' for now. The exact ID needs to be verified.
+function ContactFormIframe() {
+  const searchParams = useSearchParams();
+  const program = searchParams?.get("program") || "";
+  
+  // You can replace 'entry.XXXXX' with the actual field ID from Google Forms.
+  const baseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeuxOuh50S3mxsJSfkswwnHrbi2jE2oYLtu8nXpEE-uBg2kKQ/viewform?embedded=true";
+  const iframeUrl = program ? `${baseUrl}&entry.XXXXX=${encodeURIComponent(program)}` : baseUrl;
+
+  return (
+    <iframe
+      src={iframeUrl}
+      width="100%"
+      height="1000"
+      frameBorder={0}
+      marginHeight={0}
+      marginWidth={0}
+    >読み込んでいます…</iframe>
+  );
+}
+
 export default function Contact() {
+  useEffect(() => {
+    document.title = "法人研修のご相談・お問い合わせ｜理想と実践";
+  }, []);
+
   return (
     <main style={{ minHeight: "100vh", background: "#fafafa", color: "#111", ...sans }}>
       {/* ── Nav ── */}
@@ -19,7 +52,9 @@ export default function Contact() {
           理想と実践
         </Link>
         <nav style={{ display: "flex", gap: "28px", fontSize: "0.875rem" }}>
-          <Link href="/" style={{ opacity: 0.6 }}>トップ</Link>
+          <Link href="/about">About</Link>
+          <Link href="/lhmp">LHMP</Link>
+          <Link href="/programs">研修一覧</Link>
           <Link href="/contact" style={{ fontWeight: 600 }}>お問い合わせ</Link>
         </nav>
       </header>
@@ -35,7 +70,7 @@ export default function Contact() {
             CONTACT
           </p>
           <h1 style={{ ...serif, fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 400, lineHeight: 1.4, marginBottom: "24px" }}>
-            お問い合わせ
+            法人研修のご相談・お問い合わせ
           </h1>
           <p style={{ fontSize: "1rem", lineHeight: 2.0, opacity: 0.65 }}>
             研修に関するご相談やお問い合わせは、<br />
@@ -54,14 +89,9 @@ export default function Contact() {
             overflow: "hidden",
             padding: "8px"
           }}>
-            <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSeuxOuh50S3mxsJSfkswwnHrbi2jE2oYLtu8nXpEE-uBg2kKQ/viewform?embedded=true"
-              width="100%"
-              height="1000"
-              frameBorder={0}
-              marginHeight={0}
-              marginWidth={0}
-            >読み込んでいます…</iframe>
+            <Suspense fallback={<div>Loading form...</div>}>
+              <ContactFormIframe />
+            </Suspense>
           </div>
 
           <p style={{ marginTop: "40px", textAlign: "center", fontSize: "0.8rem", opacity: 0.45 }}>

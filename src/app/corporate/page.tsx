@@ -1,4 +1,9 @@
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "主体性・管理職・事業管理の法人研修｜理想と実践",
+};
 
 const S = {
   serif: { fontFamily: "var(--font-display, 'Zen Old Mincho', serif)" } as React.CSSProperties,
@@ -40,7 +45,8 @@ export default function Corporate() {
           </h1>
           <p style={{ fontSize: "17px", lineHeight: 2.1, color: "#555", maxWidth: "640px" }}>
             「主体的に動け」という言葉だけでは、人は動きません。<br />
-            個人の理想と法人の役割が重なったとき、初めて本当の主体性が生まれます。<br />
+            個人の理想と法人の役割の接点が明確になるほど、本人が納得して行動を選びやすくなります。<br />
+            接点が見つからない場合も、役割や環境を見直すための重要な気づきとして扱います。<br />
             理想と実践は、LHMPを基盤に組織の構造的な課題を解決します。
           </p>
         </div>
@@ -54,7 +60,7 @@ export default function Corporate() {
             <div style={{ background: "#fff", padding: "40px", borderRadius: "12px", border: "1px solid rgba(0,0,0,0.08)" }}>
               <h3 style={{ ...S.serif, fontSize: "20px", fontWeight: 500, marginBottom: "16px" }}>主体性・理念浸透</h3>
               <ul style={{ listStyle: "none", padding: 0 }}>
-                {["指示待ちの社員が多い", "理念を唱和しても行動が変わらない", "会社への帰属意識が低い"].map((t, i) => (
+                {["指示待ちの社員が多い", "理念を唱和しても行動が変わらない", "会社の方向性と、自分の役割との接続が見えない"].map((t, i) => (
                   <li key={i} style={{ fontSize: "15px", lineHeight: 1.9, color: "#444", paddingLeft: "14px", position: "relative" }}>
                     <span style={{ position: "absolute", left: 0, color: "#999" }}>·</span>{t}
                   </li>
@@ -114,6 +120,33 @@ export default function Corporate() {
         </div>
       </section>
 
+      {/* Ethics & Policies */}
+      <section style={{ padding: "100px 48px", background: "#f0ede6" }}>
+        <div style={{ maxWidth: "960px", margin: "0 auto" }}>
+          <h2 style={{ ...S.serif, fontSize: "28px", fontWeight: 500, marginBottom: "24px" }}>受講者保護と倫理方針</h2>
+          <p style={{ fontSize: "15px", lineHeight: 2.0, color: "#555", marginBottom: "40px" }}>
+            法人研修において個人の人生・幸福・理想を扱うため、通常の管理職研修以上に倫理設計を重視しています。
+          </p>
+          <div style={{ background: "#fff", padding: "40px", borderRadius: "12px", border: "1px solid rgba(0,0,0,0.08)" }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {[
+                "個人の理想や価値観の開示を強制しません",
+                "個人ワークの内容は、本人の同意なく会社へ共有しません",
+                "会社への帰属意識向上を唯一の目的にしません",
+                "個人と法人の理想が重ならないことも正当な結果として扱います",
+                "人事評価へ利用する場合は、事前に目的と範囲を明示します",
+                "心理的負担が生じた場合は、いつでも回答や発言を中断できます",
+                "医療、心理、労務上の課題は専門家へ接続します",
+              ].map((item, idx) => (
+                <li key={idx} style={{ fontSize: "15px", lineHeight: 2.0, color: "#444", paddingLeft: "18px", position: "relative", marginBottom: idx < 6 ? "12px" : 0 }}>
+                  <span style={{ position: "absolute", left: 0, color: "#111" }}>✓</span>{item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section style={{ padding: "100px 48px", background: "#111", color: "#fafafa" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
@@ -138,6 +171,9 @@ export default function Corporate() {
             <Link href="/" style={{ ...S.serif, fontSize: "15px", fontWeight: 500 }}>理想と実践</Link>
             <Link href="/programs" style={{ fontSize: "13px", color: "#666" }}>研修一覧</Link>
             <Link href="/contact" style={{ fontSize: "13px", color: "#666" }}>お問い合わせ</Link>
+            <Link href="/privacy" style={{ fontSize: "13px", color: "#666" }}>プライバシーポリシー</Link>
+            <Link href="/terms" style={{ fontSize: "13px", color: "#666" }}>利用規約</Link>
+            <Link href="/faq" style={{ fontSize: "13px", color: "#666" }}>FAQ</Link>
           </div>
           <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
             <span style={{ fontSize: "12px", color: "#999" }}>思想監修：</span>

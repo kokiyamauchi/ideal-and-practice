@@ -1,4 +1,9 @@
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "理想と実践について｜白裕の研修事業",
+};
 
 const S = {
   serif: { fontFamily: "var(--font-display, 'Zen Old Mincho', serif)" } as React.CSSProperties,
@@ -51,8 +56,8 @@ export default function About() {
         <div style={{ maxWidth: "960px", margin: "0 auto" }}>
           <h2 style={{ ...S.serif, fontSize: "28px", fontWeight: 500, marginBottom: "40px" }}>学び、整え、実装する。</h2>
           <p style={{ fontSize: "15px", lineHeight: 2.0, color: "#555", marginBottom: "64px" }}>
-            白裕（Hakuyu）は、LHMP／幸福最大化思想体系を中核に、以下の三つの事業を展開する事業母体です。
-            各事業は独立していますが、必要に応じて相互に接続し、個人と組織の構造的な課題を解決します。
+            白裕（Hakuyu）は「余白と余裕」の運営母体であり、中核思想としてLHMP／幸福最大化思想体系を体系化・保有しています。
+            本研修事業「理想と実践」をはじめとする関連事業はそれぞれ独立していますが、必要に応じて相互に接続し、個人と組織の構造的な課題を解決します。
           </p>
           
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
@@ -69,9 +74,11 @@ export default function About() {
             <div style={{ display: "flex", gap: "24px", padding: "32px", background: "#fff", borderRadius: "12px", border: "1px solid rgba(0,0,0,0.08)", alignItems: "flex-start" }}>
               <div style={{ ...S.serif, fontSize: "16px", fontWeight: 500, padding: "4px 12px", border: "1px solid #111", borderRadius: "4px" }}>DESIGN</div>
               <div>
-                <h3 style={{ ...S.serif, fontSize: "20px", fontWeight: 500, marginBottom: "12px" }}>余白と余裕</h3>
+                <a href="https://yohaku-to-yoyuu.com/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "inherit" }}>
+                  <h3 style={{ ...S.serif, fontSize: "20px", fontWeight: 500, marginBottom: "12px", textDecoration: "underline" }}>余白と余裕 ↗</h3>
+                </a>
                 <p style={{ fontSize: "14px", lineHeight: 1.8, color: "#555" }}>
-                  時間・判断・感情の詰まりを見つけ、余白が再び埋まらない構造を設計します。
+                  忙しさ・抱え込みに対処し、時間・判断・感情の詰まりを見つけ、余白が再び埋まらない構造を設計します。
                 </p>
               </div>
             </div>
@@ -79,13 +86,72 @@ export default function About() {
             <div style={{ display: "flex", gap: "24px", padding: "32px", background: "#fff", borderRadius: "12px", border: "1px solid rgba(0,0,0,0.08)", alignItems: "flex-start" }}>
               <div style={{ ...S.serif, fontSize: "16px", fontWeight: 500, padding: "4px 12px", border: "1px solid #111", borderRadius: "4px" }}>IMPLEMENT</div>
               <div>
-                <h3 style={{ ...S.serif, fontSize: "20px", fontWeight: 500, marginBottom: "12px" }}>IT Service Lab</h3>
+                <a href="https://www.it-service-lab.com/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "inherit" }}>
+                  <h3 style={{ ...S.serif, fontSize: "20px", fontWeight: 500, marginBottom: "12px", textDecoration: "underline" }}>IT Service Lab ↗</h3>
+                </a>
                 <p style={{ fontSize: "14px", lineHeight: 1.8, color: "#555" }}>
-                  Google Drive、スプレッドシート、AI、ITを用い、顧客・案件・資料・判断が迷子にならない業務基盤を実装します。
+                  Drive・AI・IT実装により、顧客・案件・資料・判断が迷子にならない業務基盤を実装します。
                 </p>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Provider Info & Operation Terms */}
+      <section style={{ padding: "100px 48px", background: "#fafafa" }}>
+        <div style={{ maxWidth: "960px", margin: "0 auto" }}>
+          <h2 style={{ ...S.serif, fontSize: "28px", fontWeight: 500, marginBottom: "40px" }}>提供体制と講師情報</h2>
+          
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "64px" }}>
+            <div>
+              <h3 style={{ fontSize: "18px", fontWeight: 600, marginBottom: "16px" }}>講師・設計者プロフィール</h3>
+              <p style={{ fontSize: "14px", lineHeight: 1.8, color: "#555", marginBottom: "16px" }}>
+                （講師の氏名・経歴・これまでの職務・事業・管理経験をここに記載します）<br />
+                長年のマネジメントおよび事業構築の経験から、個人の内発的動機と組織の成果を両立させる「LHMP」を体系化しました。
+              </p>
+            </div>
+            <div>
+              <h3 style={{ fontSize: "18px", fontWeight: 600, marginBottom: "16px" }}>対応可能な業種・規模</h3>
+              <p style={{ fontSize: "14px", lineHeight: 1.8, color: "#555" }}>
+                ・業種：IT、サービス、メーカー等幅広く対応<br />
+                ・規模：数名〜数百名規模の企業様<br />
+                ・対象：新入社員から経営層まで各階層に合わせた研修を提供
+              </p>
+            </div>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "64px" }}>
+            <div>
+              <h3 style={{ fontSize: "18px", fontWeight: 600, marginBottom: "16px" }}>研修において約束すること</h3>
+              <ul style={{ fontSize: "14px", lineHeight: 1.8, color: "#555", paddingLeft: "20px", margin: 0 }}>
+                <li>個人の価値観を尊重し、無理な思考の強制は行いません</li>
+                <li>法人と個人の双方が納得できる接点を模索します</li>
+                <li>実践的で、翌日から業務に活かせるフレームワークを提供します</li>
+              </ul>
+            </div>
+            <div>
+              <h3 style={{ fontSize: "18px", fontWeight: 600, marginBottom: "16px" }}>対応できないこと</h3>
+              <ul style={{ fontSize: "14px", lineHeight: 1.8, color: "#555", paddingLeft: "20px", margin: 0 }}>
+                <li>医療行為や心理療法に代わる対応</li>
+                <li>一方的な精神論や帰属意識のみを強要する研修</li>
+                <li>受講者の同意なき個人情報の開示</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 style={{ fontSize: "18px", fontWeight: 600, marginBottom: "16px" }}>稼働条件・実施形式</h3>
+          <p style={{ fontSize: "14px", lineHeight: 1.8, color: "#555", marginBottom: "40px" }}>
+            ・<strong>実施形式：</strong> オンラインを基本とします。<br />
+            ・<strong>実施時間：</strong> 平日夜間・土日を中心に個別調整します。<br />
+            ・<strong>1日研修：</strong> 土日実施、または3時間×2回への分割が可能です。<br />
+            ・<strong>現地実施：</strong> 日程・地域により個別相談となります。
+          </p>
+
+          <h3 style={{ fontSize: "18px", fontWeight: 600, marginBottom: "16px" }}>導入事例（モデルケース）</h3>
+          <p style={{ fontSize: "14px", lineHeight: 1.8, color: "#555" }}>
+            ※現在、モニター実施結果や想定される研修プラン・導入設計例の資料を準備中です。
+          </p>
         </div>
       </section>
 
