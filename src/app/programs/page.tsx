@@ -145,6 +145,7 @@ export default function Programs() {
               <a
                 key={card.id}
                 href={`#${programAnchorId(card.targetSlug)}`}
+                className="challenge-card"
                 style={{
                   display: "block",
                   background: "#fff",
@@ -152,15 +153,6 @@ export default function Programs() {
                   padding: "28px 24px",
                   textDecoration: "none",
                   color: "inherit",
-                  transition: "box-shadow 0.2s, transform 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.10)";
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
-                  (e.currentTarget as HTMLElement).style.transform = "none";
                 }}
               >
                 <p style={{ fontSize: "15px", fontWeight: 500, lineHeight: 1.7, marginBottom: "14px" }}>
@@ -239,15 +231,9 @@ export default function Programs() {
                 ].map((row, i) => (
                   <tr
                     key={i}
+                    className="comparison-row"
                     style={{
                       borderBottom: "1px solid rgba(0,0,0,0.07)",
-                      transition: "background 0.15s",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "#f5f5f2";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "transparent";
                     }}
                   >
                     <td style={{ padding: "14px 16px" }}>
@@ -350,6 +336,7 @@ export default function Programs() {
                 <div
                   key={p.slug}
                   id={programAnchorId(p.slug)}
+                  className="program-card"
                   style={{
                     background: "#fff",
                     border: "1px solid rgba(0,0,0,0.09)",
