@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import SiteNav from "@/components/SiteNav";
+import { programs, retentionOptions, categories, challengeCards } from "@/lib/programs-data";
 
 export const metadata: Metadata = {
-  title: "法人研修プログラム・料金｜理想と実践",
+  title: "組織の課題に合った研修を選ぶ｜理想と実践",
+  description:
+    "LHMPを基盤に、社員の主体性、理念と役割の接続、管理職育成、事業管理、研修後の定着を支援します。課題から研修を探すか、各研修の違いをご確認ください。",
 };
 
 const S = {
@@ -12,322 +15,671 @@ const S = {
   sans: { fontFamily: "var(--font-sans, 'Noto Sans JP', sans-serif)" } as React.CSSProperties,
 };
 
-export default function Programs() {
-  const categories = [
-    {
-      title: "入口",
-      desc: "全体の入口となる導入研修です。",
-      programs: [
-        {
-          slug: "lhmp-intro",
-          name: "LHMP入門研修",
-          tagline: "LHMPの全体像を通じて、人生・仕事・主体性の構造を理解する",
-          targets: ["自分がなぜ働くのか分からない社員", "理念研修を実施しても定着しない", "人材育成の入口をお探しの企業"],
-          issues: ["仕事と人生が切り離されている", "研修後に行動が変わらない", "社員が何を目指すべきかわからない"],
-          goals: ["LHMPの基本構造を理解する", "自分の幸福・理想の概念を言語化する", "仕事と人生を接続する視点を持つ"],
-          curriculum: ["LHMP概論・最上位命題", "幸福とは何か・理想形成の構造", "正しい知識と正しい思考力", "仕事の意味づけ・法人との関係", "主体性の正しい定義"],
-          format: "90分 / 法人セミナー（最大20名）",
-          price: "132,000円（税別）",
-          deliverables: ["LHMPサマリー資料", "理想メモシート"],
-        }
-      ]
-    },
-    {
-      title: "人生OS領域",
-      desc: "個人の幸福と理想、そして正しい思考力を養う中核領域です。",
-      programs: [
-        {
-          slug: "life-os-workshop",
-          name: "理想形成ワークショップ",
-          tagline: "幸福・違形感・憧れ・理想を言語化し、人生の方向性を定める",
-          targets: ["法人研修の受講対象としての社員・ビジネスパーソン", "ビジョン研修の前段として使いたい企業", "内省・対話を重視した研修を求める方"],
-          issues: ["自分が何をしたいのかわからない", "他人の価値観で目標を決めている", "理想を語る言葉を持っていない"],
-          goals: ["幸福と理想の違いを理解する", "自分の違和感・憧れを言語化する", "理想の初稿を文章として書き出す"],
-          curriculum: ["幸福と理想とは何か", "違和感・憧れの棚卸しワーク", "理想の言語化演習", "グループシェアと問い直し"],
-          format: "3時間 / 12名まで",
-          price: "275,000円（税別）",
-          deliverables: ["個人理想メモシート", "理想文草稿"],
-        },
-        {
-          slug: "life-os",
-          name: "人生OS研修",
-          tagline: "知識・思考・時間・仕事を接続し、自分の人生の設計図をつくる",
-          targets: ["法人研修の受講対象としての社員・ビジネスパーソン", "判断基準がなく、流されてしまう人", "人生を主体的に設計したいビジネスパーソン"],
-          issues: ["目標があいまいで行動が続かない", "何を優先すべきかわからない", "学んでいるが人生に変化が起きない"],
-          goals: ["自分の幸福・理想を言語化する", "判断基準を自分の言葉で定義する", "時間・行動・仕事を理想へ接続する"],
-          curriculum: ["幸福最大化の構造", "理想形成ワーク", "正しい知識・思考力", "時間設計・優先順位", "行動計画30日"],
-          format: "1日（約6時間）/ 12名まで",
-          price: "440,000円（税別）",
-          deliverables: ["個人理想整理シート", "行動計画30日版", "研修実施レポート"],
-        }
-      ]
-    },
-    {
-      title: "人・組織OS領域",
-      desc: "個人の理想と法人の役割を接続し、組織を動かす領域です。",
-      programs: [
-        {
-          slug: "agency",
-          name: "社員主体性・役割接続研修",
-          tagline: "個人の理想と法人の役割を接続し、本当の意味での主体性を引き出す",
-          targets: ["一般社員・若手・中堅社員", "指示待ちの社員が多い企業", "自律的なチームをつくりたい経営者"],
-          issues: ["主体的に動けと言っても変わらない", "自分ごとにならない", "役割と自分の人生が切り離されている"],
-          goals: ["主体性の正しい定義を理解する", "個人理想と法人役割の接続点を見つける", "自分から動く判断基準を持つ"],
-          curriculum: ["主体性とは何か（LHMPの定義）", "個人ビジョン整理ワーク", "法人の期待役割の言語化", "接続図の作成", "行動実験設計"],
-          format: "3時間 / 12名まで",
-          price: "275,000円（税別）",
-          deliverables: ["個人・法人ビジョン接続図", "行動実験シート"],
-        },
-        {
-          slug: "vision",
-          name: "理念浸透・ビジョン接続ワークショップ",
-          tagline: "会社の理念と社員の人生をつなぎ、役割を意味ある行動へ変える",
-          targets: ["理念やMVVをすでに策定している法人", "会社と社員の方向性がバラバラな組織", "ビジョン浸透研修を強化したい人事担当"],
-          issues: ["理念を唱和しても行動が変わらない", "会社の方向性と、自分の役割との接続が見えない", "社員が会社の方向性を自分ごとにできない"],
-          goals: ["法人ビジョンを自分の言葉で解釈する", "個人の理想と法人の方向性の重なりを見つける", "役割を意味ある行動として設計する"],
-          curriculum: ["法人と個人の理想の構造", "ビジョンの意味解釈ワーク", "重なり発見ワーク", "役割・行動計画設計"],
-          format: "3時間 / 12名まで",
-          price: "275,000円（税別）",
-          deliverables: ["個人・法人ビジョン接続図", "役割行動計画"],
-        },
-        {
-          slug: "manager",
-          name: "管理者・管理職研修",
-          tagline: "人が成果を出せる状態をつくる（判断・任せ方・対話・育成）",
-          targets: ["管理職が仕事を抱え込んでいる企業", "チームへの権限移譲が進まない組織", "管理職育成プログラムを整備したい企業"],
-          issues: ["管理者がすべてを確認・判断している", "部下が育たない、任せられない", "チーム内の心理的安全性が低い"],
-          goals: ["任せるための判断基準を持つ", "対話・フィードバックの型を身につける", "育成と1on1の仕組みを設計する"],
-          curriculum: ["管理職の役割再定義", "権限移譲の設計", "対話・フィードバック演習", "育成・1on1設計", "行動計画"],
-          format: "1日（約6時間）/ 12名まで",
-          price: "440,000円（税別）",
-          deliverables: ["役割・責任・期限整理表", "権限移譲設計書", "研修実施レポート"],
-        }
-      ]
-    },
-    {
-      title: "事業管理OS領域",
-      desc: "仕事が滞りなく回る状態をつくる業務・情報の管理領域です。",
-      programs: [
-        {
-          slug: "management-os",
-          name: "事業管理OS研修",
-          tagline: "顧客・案件・資料・期限・役割を整え、管理構造を機能させる",
-          targets: ["顧客・案件が属人化している企業", "管理シートはあるが使われない組織", "情報と判断が整理されていないチーム"],
-          issues: ["誰が何を担当しているか不明", "締め切りが守られない、抜け漏れが多い", "振り返りが改善につながらない"],
-          goals: ["管理の正しい構造を理解する", "顧客・案件・情報の整理基準をつくる", "週次・業務レビューの仕組みを設計する"],
-          curriculum: ["事業管理OSの全体構造", "顧客・案件の整理基準", "情報の正本と集約", "優先順位・役割・期限の設計", "週次レビュー演習"],
-          format: "3時間 / 12名まで",
-          price: "275,000円（税別）",
-          deliverables: ["案件管理フォーマット", "週次レビュー設計書", "役割・責任整理表"],
-        }
-      ]
-    },
-    {
-      title: "定着支援",
-      desc: "研修内容を現場での行動と習慣へと変える継続プログラムです。",
-      programs: [
-        {
-          slug: "30-days",
-          name: "30日実践フォロー",
-          tagline: "研修後の初期行動を確実にするための中間フォロー",
-          targets: ["研修後の行動変容を確実にしたい企業"],
-          issues: ["最初の1ヶ月で熱が冷めてしまう"],
-          goals: ["30日間の行動計画を完遂する"],
-          curriculum: ["30日行動計画", "管理者確認", "30日後レビュー", "簡易定着レポート"],
-          format: "30日間",
-          price: "研修費＋165,000〜220,000円（税別）",
-          deliverables: ["簡易定着レポート"],
-        },
-        {
-          slug: "90-days",
-          name: "90日定着プログラム",
-          tagline: "研修後も変化が続く。30・60・90日のフォローで行動を仕組みへ変える",
-          targets: ["研修を実施しても現場へ定着しない企業", "継続的な変化を求める組織", "研修と現場を接続したい人事担当"],
-          issues: ["研修後に元に戻ってしまう", "学んだことが業務で使われない", "一回限りの研修で終わっている"],
-          goals: ["研修後30日・60日・90日で行動を確認する", "現場での実践を振り返り軌道修正する", "行動を個人の習慣・組織の仕組みへ定着させる"],
-          curriculum: ["対象研修1回", "事前ヒアリング60分・研修設計", "30・60日レビュー（各90分）", "90日レビュー（120分）", "管理責任者面談2回"],
-          format: "90日間 / 個別設計",
-          price: "990,000円〜（税別）",
-          deliverables: ["受講者ワークブック", "期間中のメール質問対応", "90日定着レポート", "次期改善提案"],
-        }
-      ]
-    }
-  ];
+// カテゴリ表示ラベル（ページ内アンカー用）
+const categoryAnchorId = (cat: string) => `category-${cat}`;
+const programAnchorId = (slug: string) => `program-${slug}`;
 
+// カテゴリごとに研修をグループ化
+const grouped = categories.map((cat) => ({
+  ...cat,
+  programs: programs.filter((p) => p.category === cat.id),
+}));
+
+export default function Programs() {
   return (
     <main style={{ background: "#fafafa", color: "#111", ...S.sans }}>
-      {/* Nav */}
       <SiteNav activeHref="/programs" />
 
-      {/* Hero */}
-      <section style={{ paddingTop: "140px", paddingBottom: "80px", paddingLeft: "48px", paddingRight: "48px", borderBottom: "1px solid rgba(0,0,0,0.10)" }}>
+      {/* ══════════════════════════════════════
+          セクション1: ファーストビュー
+      ══════════════════════════════════════ */}
+      <section
+        id="top"
+        style={{
+          paddingTop: "140px",
+          paddingBottom: "80px",
+          paddingLeft: "48px",
+          paddingRight: "48px",
+          borderBottom: "1px solid rgba(0,0,0,0.10)",
+          scrollMarginTop: "0px",
+        }}
+      >
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <p style={{ fontSize: "11px", letterSpacing: "0.15em", color: "#999", marginBottom: "24px" }}>PROGRAMS</p>
-          <h1 style={{ ...S.serif, fontSize: "clamp(32px, 4vw, 56px)", fontWeight: 500, lineHeight: 1.3, marginBottom: "24px" }}>
-            研修一覧
+          <p style={{ fontSize: "11px", letterSpacing: "0.15em", color: "#999", marginBottom: "24px" }}>
+            PROGRAMS
+          </p>
+          <h1
+            style={{
+              ...S.serif,
+              fontSize: "clamp(32px, 4vw, 56px)",
+              fontWeight: 500,
+              lineHeight: 1.3,
+              marginBottom: "28px",
+            }}
+          >
+            組織の課題に合った研修を選ぶ
           </h1>
-          <p style={{ fontSize: "16px", lineHeight: 2.0, color: "#555", maxWidth: "640px", marginBottom: "40px" }}>
-            すべての研修は、白裕の中核思想「LHMP」を基盤に設計されています。<br />
-            個人と法人の課題に応じて、適した領域と研修をお選びください。
+          <p
+            style={{
+              fontSize: "16px",
+              lineHeight: 2.0,
+              color: "#555",
+              maxWidth: "640px",
+              marginBottom: "48px",
+            }}
+          >
+            LHMPを基盤に、社員の主体性、理念と役割の接続、管理職育成、事業管理、研修後の定着を支援します。
+            <br />
+            お悩みから研修を探すか、各研修の違いをご確認ください。
           </p>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-            {categories.map(cat => (
-              <a key={cat.title} href={`#\${cat.title}`} style={{ padding: "6px 14px", border: "1px solid rgba(0,0,0,0.20)", fontSize: "12px", letterSpacing: "0.05em", color: "inherit", textDecoration: "none" }}>{cat.title}</a>
+            <a
+              href="#challenges"
+              style={{
+                display: "inline-block",
+                background: "#111",
+                color: "#fafafa",
+                padding: "14px 28px",
+                fontSize: "14px",
+                fontWeight: 500,
+                textDecoration: "none",
+              }}
+            >
+              課題から研修を探す ↓
+            </a>
+            <Link
+              href="/contact"
+              style={{
+                display: "inline-block",
+                border: "1px solid rgba(0,0,0,0.30)",
+                color: "#111",
+                padding: "14px 28px",
+                fontSize: "14px",
+                fontWeight: 500,
+              }}
+            >
+              研修選びを相談する
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          セクション2: お悩みから選ぶ
+      ══════════════════════════════════════ */}
+      <section
+        id="challenges"
+        style={{
+          padding: "80px 48px",
+          background: "#f5f5f2",
+          scrollMarginTop: "80px",
+        }}
+      >
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <p style={{ fontSize: "11px", letterSpacing: "0.15em", color: "#999", marginBottom: "20px" }}>
+            FIND BY CHALLENGE
+          </p>
+          <h2
+            style={{
+              ...S.serif,
+              fontSize: "28px",
+              fontWeight: 500,
+              marginBottom: "12px",
+            }}
+          >
+            お悩みから探す
+          </h2>
+          <p style={{ fontSize: "15px", color: "#666", marginBottom: "48px", lineHeight: 1.8 }}>
+            当てはまる課題をクリックすると、該当の研修へ移動します。
+          </p>
+
+          {/* 課題カード：3列×2段 */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "24px",
+            }}
+          >
+            {challengeCards.map((card) => (
+              <a
+                key={card.id}
+                href={`#${programAnchorId(card.targetSlug)}`}
+                style={{
+                  display: "block",
+                  background: "#fff",
+                  border: "1px solid rgba(0,0,0,0.10)",
+                  padding: "28px 24px",
+                  textDecoration: "none",
+                  color: "inherit",
+                  transition: "box-shadow 0.2s, transform 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.10)";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                  (e.currentTarget as HTMLElement).style.transform = "none";
+                }}
+              >
+                <p style={{ fontSize: "15px", fontWeight: 500, lineHeight: 1.7, marginBottom: "14px" }}>
+                  {card.title}
+                </p>
+                <p style={{ fontSize: "12px", color: "#888", lineHeight: 1.8, marginBottom: "16px" }}>
+                  {card.note}
+                </p>
+                <p style={{ fontSize: "12px", color: "#333", fontWeight: 500 }}>
+                  → {card.targetLabel}
+                </p>
+              </a>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Programs list */}
-      {categories.map((cat, cIdx) => (
-        <section key={cIdx} id={cat.title} style={{
+      {/* ══════════════════════════════════════
+          セクション3: 比較表
+      ══════════════════════════════════════ */}
+      <section
+        id="comparison"
+        style={{
           padding: "80px 48px",
-          background: cIdx % 2 === 0 ? "#fafafa" : "#f5f5f2",
-          borderBottom: "1px solid rgba(0,0,0,0.08)"
-        }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto", marginBottom: "48px" }}>
-            <h2 style={{ ...S.serif, fontSize: "28px", fontWeight: 500, marginBottom: "16px" }}>{cat.title}</h2>
-            <p style={{ fontSize: "15px", color: "#555" }}>{cat.desc}</p>
-          </div>
-          
-          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "64px" }}>
-            {cat.programs.map((p, idx) => (
-              <div key={idx} style={{ 
-                display: "grid", gridTemplateColumns: "280px 1fr", gap: "80px",
-                paddingBottom: idx !== cat.programs.length - 1 ? "64px" : 0,
-                borderBottom: idx !== cat.programs.length - 1 ? "1px solid rgba(0,0,0,0.1)" : "none"
-              }}>
-                {/* Left */}
-                <div>
-                  <h3 style={{ ...S.serif, fontSize: "22px", fontWeight: 500, lineHeight: 1.5, marginBottom: "20px" }}>
-                    <Link href={`/programs/\${p.slug}`} style={{ color: "inherit", textDecoration: "none" }}>{p.name}</Link>
-                  </h3>
-                  <p style={{ fontSize: "14px", lineHeight: 1.8, color: "#666", marginBottom: "32px" }}>{p.tagline}</p>
-                  <div style={{ borderTop: "1px solid rgba(0,0,0,0.12)", paddingTop: "24px" }}>
-                    <p style={{ fontSize: "11px", color: "#999", marginBottom: "8px" }}>形式・人数</p>
-                    <p style={{ fontSize: "14px", fontWeight: 500 }}>{p.format}</p>
-                  </div>
-                  <div style={{ borderTop: "1px solid rgba(0,0,0,0.12)", paddingTop: "24px", marginTop: "20px" }}>
-                    <p style={{ fontSize: "11px", color: "#999", marginBottom: "8px" }}>標準価格（税別）</p>
-                    <p style={{ ...S.serif, fontSize: "22px", fontWeight: 500 }}>{p.price}</p>
-                  </div>
-                  <div style={{ marginTop: "32px", display: "flex", gap: "12px", flexDirection: "column" }}>
-                    <Link href={`/programs/\${p.slug}`} style={{
-                      display: "inline-block", padding: "12px 24px", textAlign: "center",
-                      border: "1px solid #111", color: "#111", fontSize: "13px", fontWeight: 500
-                    }}>詳細を見る</Link>
-                    <Link href={`/contact?program=\${p.slug}`} style={{
-                      display: "inline-block", padding: "12px 24px", textAlign: "center",
-                      background: "#111", color: "#fafafa", fontSize: "13px", fontWeight: 500
-                    }}>この研修を相談する →</Link>
-                  </div>
-                </div>
+          background: "#fafafa",
+          scrollMarginTop: "80px",
+          borderBottom: "1px solid rgba(0,0,0,0.08)",
+        }}
+      >
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <p style={{ fontSize: "11px", letterSpacing: "0.15em", color: "#999", marginBottom: "20px" }}>
+            COMPARISON
+          </p>
+          <h2
+            style={{
+              ...S.serif,
+              fontSize: "28px",
+              fontWeight: 500,
+              marginBottom: "12px",
+            }}
+          >
+            研修の比較
+          </h2>
+          <p style={{ fontSize: "15px", color: "#666", marginBottom: "40px", lineHeight: 1.8 }}>
+            似た研修との違いや、自社の状況に合う研修を確認できます。
+          </p>
 
-                {/* Right */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
-                  <div>
-                    <p style={{ fontSize: "11px", letterSpacing: "0.12em", color: "#999", marginBottom: "16px", borderBottom: "1px solid rgba(0,0,0,0.10)", paddingBottom: "8px" }}>対象者</p>
-                    <ul style={{ listStyle: "none", padding: 0 }}>
-                      {p.targets.map((t, i) => (
-                        <li key={i} style={{ fontSize: "14px", lineHeight: 1.9, color: "#444", paddingLeft: "14px", position: "relative" }}>
-                          <span style={{ position: "absolute", left: 0, color: "#999" }}>·</span>{t}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <p style={{ fontSize: "11px", letterSpacing: "0.12em", color: "#999", marginBottom: "16px", borderBottom: "1px solid rgba(0,0,0,0.10)", paddingBottom: "8px" }}>よくある課題</p>
-                    <ul style={{ listStyle: "none", padding: 0 }}>
-                      {p.issues.map((t, i) => (
-                        <li key={i} style={{ fontSize: "14px", lineHeight: 1.9, color: "#444", paddingLeft: "14px", position: "relative" }}>
-                          <span style={{ position: "absolute", left: 0, color: "#999" }}>·</span>{t}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <p style={{ fontSize: "11px", letterSpacing: "0.12em", color: "#999", marginBottom: "16px", borderBottom: "1px solid rgba(0,0,0,0.10)", paddingBottom: "8px" }}>到達目標</p>
-                    <ul style={{ listStyle: "none", padding: 0 }}>
-                      {p.goals.map((t, i) => (
-                        <li key={i} style={{ fontSize: "14px", lineHeight: 1.9, color: "#444", paddingLeft: "14px", position: "relative" }}>
-                          <span style={{ position: "absolute", left: 0, color: "#999" }}>·</span>{t}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <p style={{ fontSize: "11px", letterSpacing: "0.12em", color: "#999", marginBottom: "16px", borderBottom: "1px solid rgba(0,0,0,0.10)", paddingBottom: "8px" }}>主な内容・カリキュラム</p>
-                    <ol style={{ listStyle: "none", padding: 0 }}>
-                      {p.curriculum.map((c, i) => (
-                        <li key={i} style={{ fontSize: "14px", lineHeight: 1.9, color: "#444", display: "grid", gridTemplateColumns: "24px 1fr", gap: "8px" }}>
-                          <span style={{ color: "#bbb" }}>{String(i + 1).padStart(2, "0")}</span>
-                          <span>{c}</span>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                  <div style={{ gridColumn: "1/-1" }}>
-                    <p style={{ fontSize: "11px", letterSpacing: "0.12em", color: "#999", marginBottom: "16px", borderBottom: "1px solid rgba(0,0,0,0.10)", paddingBottom: "8px" }}>成果物・含まれるもの</p>
-                    <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-                      {p.deliverables.map((d, i) => (
-                        <span key={i} style={{ padding: "6px 14px", border: "1px solid rgba(0,0,0,0.15)", fontSize: "13px", color: "#555" }}>{d}</span>
-                      ))}
+          <div style={{ overflowX: "auto" }}>
+            <table
+              style={{
+                width: "100%",
+                minWidth: "700px",
+                borderCollapse: "collapse",
+                fontSize: "14px",
+                lineHeight: 1.7,
+              }}
+            >
+              <thead>
+                <tr style={{ borderBottom: "2px solid rgba(0,0,0,0.15)" }}>
+                  <th style={{ textAlign: "left", padding: "12px 16px", fontWeight: 500, color: "#999", fontSize: "11px", letterSpacing: "0.1em" }}>研修名</th>
+                  <th style={{ textAlign: "left", padding: "12px 16px", fontWeight: 500, color: "#999", fontSize: "11px", letterSpacing: "0.1em" }}>主な目的</th>
+                  <th style={{ textAlign: "left", padding: "12px 16px", fontWeight: 500, color: "#999", fontSize: "11px", letterSpacing: "0.1em" }}>適した状態</th>
+                  <th style={{ textAlign: "right", padding: "12px 16px", fontWeight: 500, color: "#999", fontSize: "11px", letterSpacing: "0.1em", whiteSpace: "nowrap" }}>時間</th>
+                  <th style={{ textAlign: "right", padding: "12px 16px", fontWeight: 500, color: "#999", fontSize: "11px", letterSpacing: "0.1em", whiteSpace: "nowrap" }}>価格（税別）</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { name: "LHMP入門", purpose: "全体像の共有", state: "まず導入したい", time: "90分", price: "132,000円", slug: "lhmp-intro" },
+                  { name: "理想形成WS", purpose: "理想の言語化", state: "理想が曖昧", time: "3時間", price: "275,000円", slug: "life-os-workshop" },
+                  { name: "人生OS", purpose: "人生・判断・行動の包括整理", state: "広く設計したい", time: "約6時間", price: "440,000円", slug: "life-os" },
+                  { name: "主体性開発", purpose: "個人と役割の接続", state: "指示待ちを改善したい", time: "3時間", price: "275,000円", slug: "agency" },
+                  { name: "ビジョン接続", purpose: "理念を役割行動へ変換", state: "MVVが策定済み", time: "3時間", price: "275,000円", slug: "vision" },
+                  { name: "管理者・管理職", purpose: "任せ方・対話・育成", state: "管理職が抱え込む", time: "約6時間", price: "440,000円", slug: "manager" },
+                  { name: "事業管理OS", purpose: "顧客・案件・情報管理", state: "属人化・抜け漏れがある", time: "3時間", price: "275,000円", slug: "management-os" },
+                ].map((row, i) => (
+                  <tr
+                    key={i}
+                    style={{
+                      borderBottom: "1px solid rgba(0,0,0,0.07)",
+                      transition: "background 0.15s",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "#f5f5f2";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "transparent";
+                    }}
+                  >
+                    <td style={{ padding: "14px 16px" }}>
+                      <a
+                        href={`#${programAnchorId(row.slug)}`}
+                        style={{ color: "#111", fontWeight: 500, textDecoration: "none" }}
+                      >
+                        {row.name}
+                      </a>
+                    </td>
+                    <td style={{ padding: "14px 16px", color: "#444" }}>{row.purpose}</td>
+                    <td style={{ padding: "14px 16px", color: "#666", fontSize: "13px" }}>{row.state}</td>
+                    <td style={{ padding: "14px 16px", textAlign: "right", color: "#444", whiteSpace: "nowrap" }}>{row.time}</td>
+                    <td style={{ padding: "14px 16px", textAlign: "right", fontWeight: 500, whiteSpace: "nowrap" }}>{row.price}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          セクション4: 体系から選ぶ（副導線）
+      ══════════════════════════════════════ */}
+      <section
+        style={{
+          padding: "60px 48px 40px",
+          background: "#f5f5f2",
+          borderBottom: "1px solid rgba(0,0,0,0.08)",
+        }}
+      >
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <p style={{ fontSize: "11px", letterSpacing: "0.15em", color: "#999", marginBottom: "16px" }}>
+            LHMP FRAMEWORK
+          </p>
+          <h2
+            style={{
+              ...S.serif,
+              fontSize: "22px",
+              fontWeight: 500,
+              marginBottom: "24px",
+            }}
+          >
+            LHMPの体系から研修を見る
+          </h2>
+          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+            {[
+              { label: "はじめての方", id: categoryAnchorId("intro") },
+              { label: "人生OS", id: categoryAnchorId("life-os") },
+              { label: "人・組織OS", id: categoryAnchorId("org-os") },
+              { label: "事業管理OS", id: categoryAnchorId("biz-os") },
+              { label: "定着支援", id: "retention" },
+            ].map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                style={{
+                  padding: "8px 18px",
+                  border: "1px solid rgba(0,0,0,0.20)",
+                  fontSize: "13px",
+                  color: "inherit",
+                  textDecoration: "none",
+                  background: "#fff",
+                }}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          セクション5: 研修カード一覧（カテゴリ別）
+      ══════════════════════════════════════ */}
+      {grouped.map((cat, cIdx) => (
+        <section
+          key={cat.id}
+          id={categoryAnchorId(cat.id)}
+          style={{
+            padding: "80px 48px",
+            background: cIdx % 2 === 0 ? "#fafafa" : "#f5f5f2",
+            borderBottom: "1px solid rgba(0,0,0,0.08)",
+            scrollMarginTop: "80px",
+          }}
+        >
+          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+            {/* カテゴリヘッダー */}
+            <div style={{ marginBottom: "48px", paddingBottom: "24px", borderBottom: "1px solid rgba(0,0,0,0.10)" }}>
+              <p style={{ fontSize: "11px", letterSpacing: "0.15em", color: "#999", marginBottom: "12px" }}>
+                {cat.id.toUpperCase().replace("-", " ")}
+              </p>
+              <h2 style={{ ...S.serif, fontSize: "24px", fontWeight: 500 }}>{cat.label}</h2>
+            </div>
+
+            {/* 研修カード */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
+              {cat.programs.map((p) => (
+                <div
+                  key={p.slug}
+                  id={programAnchorId(p.slug)}
+                  style={{
+                    background: "#fff",
+                    border: "1px solid rgba(0,0,0,0.09)",
+                    padding: "40px",
+                    scrollMarginTop: "96px",
+                  }}
+                >
+                  {/* カードヘッダー */}
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr auto",
+                      gap: "24px",
+                      marginBottom: "28px",
+                      paddingBottom: "24px",
+                      borderBottom: "1px solid rgba(0,0,0,0.08)",
+                      alignItems: "start",
+                    }}
+                  >
+                    <div>
+                      <p
+                        style={{
+                          fontSize: "11px",
+                          letterSpacing: "0.12em",
+                          color: "#999",
+                          marginBottom: "8px",
+                        }}
+                      >
+                        {p.categoryLabel}
+                      </p>
+                      <h3 style={{ ...S.serif, fontSize: "22px", fontWeight: 500, lineHeight: 1.4, marginBottom: "8px" }}>
+                        <Link href={`/programs/${p.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
+                          {p.title}
+                        </Link>
+                      </h3>
+                      <p style={{ fontSize: "13px", color: "#888", marginBottom: "12px" }}>{p.subtitle}</p>
+                      <p style={{ fontSize: "14px", lineHeight: 1.9, color: "#555" }}>{p.summary}</p>
+                    </div>
+                    <div style={{ textAlign: "right", whiteSpace: "nowrap", flexShrink: 0 }}>
+                      <p style={{ fontSize: "11px", color: "#999", marginBottom: "4px" }}>{p.duration} / {p.capacity}</p>
+                      <p style={{ ...S.serif, fontSize: "20px", fontWeight: 500 }}>{p.price}</p>
                     </div>
                   </div>
+
+                  {/* カード本文：適した課題 + 得られる状態 */}
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr",
+                      gap: "32px",
+                      marginBottom: "32px",
+                    }}
+                  >
+                    <div>
+                      <p
+                        style={{
+                          fontSize: "11px",
+                          letterSpacing: "0.12em",
+                          color: "#999",
+                          marginBottom: "14px",
+                          borderBottom: "1px solid rgba(0,0,0,0.08)",
+                          paddingBottom: "8px",
+                        }}
+                      >
+                        このような企業に
+                      </p>
+                      <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                        {p.suitableFor.map((item, i) => (
+                          <li
+                            key={i}
+                            style={{
+                              fontSize: "14px",
+                              lineHeight: 1.9,
+                              color: "#444",
+                              paddingLeft: "14px",
+                              position: "relative",
+                            }}
+                          >
+                            <span style={{ position: "absolute", left: 0, color: "#bbb" }}>·</span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p
+                        style={{
+                          fontSize: "11px",
+                          letterSpacing: "0.12em",
+                          color: "#999",
+                          marginBottom: "14px",
+                          borderBottom: "1px solid rgba(0,0,0,0.08)",
+                          paddingBottom: "8px",
+                        }}
+                      >
+                        得られる状態
+                      </p>
+                      <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                        {p.outcomes.map((item, i) => (
+                          <li
+                            key={i}
+                            style={{
+                              fontSize: "14px",
+                              lineHeight: 1.9,
+                              color: "#444",
+                              paddingLeft: "14px",
+                              position: "relative",
+                            }}
+                          >
+                            <span style={{ position: "absolute", left: 0, color: "#bbb" }}>·</span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* カードフッター：ボタン */}
+                  <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+                    <Link
+                      href={`/programs/${p.slug}`}
+                      style={{
+                        display: "inline-block",
+                        padding: "11px 24px",
+                        border: "1px solid rgba(0,0,0,0.30)",
+                        color: "#111",
+                        fontSize: "13px",
+                        fontWeight: 500,
+                      }}
+                    >
+                      詳細を見る
+                    </Link>
+                    <Link
+                      href={`/contact?program=${p.slug}`}
+                      style={{
+                        fontSize: "13px",
+                        color: "#666",
+                        textDecoration: "underline",
+                        textUnderlineOffset: "3px",
+                      }}
+                    >
+                      この研修について相談
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* カテゴリ末尾の相談ボタン */}
+            <div style={{ marginTop: "40px", textAlign: "center" }}>
+              <Link
+                href="/contact"
+                style={{
+                  fontSize: "14px",
+                  color: "#666",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "3px",
+                }}
+              >
+                研修選びを相談する →
+              </Link>
+            </div>
           </div>
         </section>
       ))}
 
-      {/* Note */}
-      <section style={{ padding: "60px 48px", background: "#f0ede6" }}>
+      {/* ══════════════════════════════════════
+          セクション6: 定着支援（分離）
+      ══════════════════════════════════════ */}
+      <section
+        id="retention"
+        style={{
+          padding: "80px 48px",
+          background: "#f0ede6",
+          borderBottom: "1px solid rgba(0,0,0,0.10)",
+          scrollMarginTop: "80px",
+        }}
+      >
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <p style={{ fontSize: "11px", letterSpacing: "0.15em", color: "#999", marginBottom: "20px" }}>
+            RETENTION SUPPORT
+          </p>
+          <h2 style={{ ...S.serif, fontSize: "24px", fontWeight: 500, marginBottom: "12px" }}>
+            研修後の定着支援
+          </h2>
+          <p style={{ fontSize: "15px", color: "#666", lineHeight: 1.9, marginBottom: "48px" }}>
+            研修は「学んで終わり」ではありません。30日・60日・90日のフォローで、学びを現場の行動へ定着させます。
+            <br />
+            主要研修への追加オプションとして申し込みます。
+          </p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+            {retentionOptions.map((opt) => (
+              <div
+                key={opt.id}
+                style={{
+                  background: "#fff",
+                  border: "1px solid rgba(0,0,0,0.10)",
+                  padding: "36px",
+                }}
+              >
+                <h3 style={{ ...S.serif, fontSize: "20px", fontWeight: 500, marginBottom: "8px" }}>{opt.title}</h3>
+                <p style={{ fontSize: "13px", color: "#888", marginBottom: "20px" }}>{opt.subtitle}</p>
+                <p style={{ fontSize: "14px", lineHeight: 1.9, color: "#555", marginBottom: "24px" }}>
+                  {opt.description}
+                </p>
+                <ul style={{ listStyle: "none", padding: 0, margin: "0 0 24px 0" }}>
+                  {opt.contents.map((c, i) => (
+                    <li
+                      key={i}
+                      style={{
+                        fontSize: "13px",
+                        lineHeight: 1.9,
+                        color: "#444",
+                        paddingLeft: "14px",
+                        position: "relative",
+                      }}
+                    >
+                      <span style={{ position: "absolute", left: 0, color: "#bbb" }}>·</span>
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+                <div style={{ borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: "20px" }}>
+                  <p style={{ fontSize: "11px", color: "#999", marginBottom: "4px" }}>{opt.duration}</p>
+                  <p style={{ ...S.serif, fontSize: "18px", fontWeight: 500 }}>{opt.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          セクション7: 標準仕様に含まれないもの
+      ══════════════════════════════════════ */}
+      <section style={{ padding: "60px 48px", background: "#f5f5f2" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <p style={{ fontSize: "11px", letterSpacing: "0.15em", color: "#999", marginBottom: "20px" }}>NOTE</p>
-          <h2 style={{ ...S.serif, fontSize: "20px", fontWeight: 500, marginBottom: "24px" }}>標準仕様に含まれないもの</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}>
+          <h2 style={{ ...S.serif, fontSize: "20px", fontWeight: 500, marginBottom: "24px" }}>
+            標準仕様に含まれないもの
+          </h2>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "12px 24px",
+            }}
+          >
             {[
               "完全オーダーメイド教材",
               "追加研修の実施",
               "現地交通費・宿泊費",
-              "ITシステム構築 (IT Service Labにて対応可)",
+              "ITシステム構築（IT Service Labにて対応可）",
               "人事評価・賃金制度の設計",
               "労務・法務判断",
               "医療・心理診断・カウンセリング",
               "無制限の個別面談",
               "録画の社内無期限利用",
             ].map((item, i) => (
-              <div key={i} style={{ fontSize: "13px", color: "#666", paddingLeft: "14px", position: "relative" }}>
-                <span style={{ position: "absolute", left: 0, color: "#bbb" }}>·</span>{item}
+              <div key={i} style={{ fontSize: "13px", color: "#666", paddingLeft: "14px", position: "relative", lineHeight: 1.8 }}>
+                <span style={{ position: "absolute", left: 0, color: "#bbb" }}>·</span>
+                {item}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* ══════════════════════════════════════
+          セクション8: CTA
+      ══════════════════════════════════════ */}
       <section style={{ padding: "100px 48px", background: "#111", color: "#fafafa" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ ...S.serif, fontSize: "clamp(28px, 3vw, 44px)", fontWeight: 500, lineHeight: 1.4, marginBottom: "24px" }}>
-            まず、30分話してみてください。
+          <h2
+            style={{
+              ...S.serif,
+              fontSize: "clamp(28px, 3vw, 44px)",
+              fontWeight: 500,
+              lineHeight: 1.4,
+              marginBottom: "24px",
+            }}
+          >
+            自社の課題に合う研修か、<br />まず30分話してみてください。
           </h2>
-          <p style={{ fontSize: "15px", lineHeight: 2.0, color: "rgba(255,255,255,0.65)", marginBottom: "40px" }}>
-            課題・対象者・研修目的を伺い、どの研修が合うかをご提案します。<br />
-            お見積もり・ご相談は無料です。
+          <p
+            style={{
+              fontSize: "15px",
+              lineHeight: 2.0,
+              color: "rgba(255,255,255,0.65)",
+              marginBottom: "40px",
+            }}
+          >
+            課題・対象者・研修目的を伺い、どの研修が合うかをご提案します。
+            <br />
+            どの研修か分からない場合も、相談から始めていただけます。お見積もり・ご相談は無料です。
           </p>
-          <Link href="/contact" style={{
-            display: "inline-block", background: "#fafafa", color: "#111",
-            padding: "16px 36px", fontSize: "15px", fontWeight: 500
-          }}>法人研修を相談する →</Link>
+          <Link
+            href="/contact"
+            style={{
+              display: "inline-block",
+              background: "#fafafa",
+              color: "#111",
+              padding: "16px 36px",
+              fontSize: "15px",
+              fontWeight: 500,
+            }}
+          >
+            法人研修を相談する →
+          </Link>
         </div>
       </section>
 
       {/* Footer */}
       <footer style={{ borderTop: "1px solid rgba(0,0,0,0.12)", padding: "40px 48px", ...S.sans }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "16px",
+          }}
+        >
           <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
-            <Link href="/" style={{ ...S.serif, fontSize: "15px", fontWeight: 500 }}>理想と実践</Link>
+            <Link href="/" style={{ ...S.serif, fontSize: "15px", fontWeight: 500 }}>
+              理想と実践
+            </Link>
             <Link href="/programs" style={{ fontSize: "13px", color: "#666" }}>研修一覧</Link>
             <Link href="/contact" style={{ fontSize: "13px", color: "#666" }}>お問い合わせ</Link>
             <Link href="/privacy" style={{ fontSize: "13px", color: "#666" }}>プライバシーポリシー</Link>
@@ -336,7 +688,14 @@ export default function Programs() {
           </div>
           <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
             <span style={{ fontSize: "12px", color: "#999" }}>運営・思想監修：</span>
-            <a href="https://hakuyu.ltd" target="_blank" rel="noopener noreferrer" style={{ fontSize: "13px", color: "#666" }}>白裕（Hakuyu）</a>
+            <a
+              href="https://hakuyu.ltd"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontSize: "13px", color: "#666" }}
+            >
+              白裕（Hakuyu）
+            </a>
             <span style={{ fontSize: "12px", color: "#999" }}>© 2026 白裕</span>
           </div>
         </div>

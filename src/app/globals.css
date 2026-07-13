@@ -119,11 +119,7 @@ a { color: inherit; text-decoration: none; transition: opacity 0.2s; }
   }
 
 
-  /* Wrap flex items */
-  div[style*="display: flex"] {
-    flex-wrap: wrap !important;
-    gap: 32px !important;
-  }
+
 
   /* Force display block on some very wide elements if needed */
   div[style*="width:"] {
