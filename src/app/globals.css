@@ -112,9 +112,18 @@ a { color: inherit; text-decoration: none; transition: opacity 0.2s; }
 
   /* Break grids into 1 column */
   div[style*="grid-template-columns"], 
-  div[style*="display: grid"] {
+  div[style*="display: grid"],
+  .l-grid, .s-hero__grid, .c-grid {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
+  }
+
+  /* Reset inline padding on grid children when collapsed to 1 column */
+  div[style*="grid-template-columns"] > div,
+  div[style*="display: grid"] > div {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
   }
 
   /* Wrap flex items */
