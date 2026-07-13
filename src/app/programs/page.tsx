@@ -192,7 +192,11 @@ export default function Programs() {
           
           <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "64px" }}>
             {cat.programs.map((p, idx) => (
-              <div key={idx} style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: "80px" }}>
+              <div key={idx} style={{ 
+                display: "grid", gridTemplateColumns: "280px 1fr", gap: "80px",
+                paddingBottom: idx !== cat.programs.length - 1 ? "64px" : 0,
+                borderBottom: idx !== cat.programs.length - 1 ? "1px solid rgba(0,0,0,0.1)" : "none"
+              }}>
                 {/* Left */}
                 <div>
                   <h3 style={{ ...S.serif, fontSize: "22px", fontWeight: 500, lineHeight: 1.5, marginBottom: "20px" }}>
@@ -255,8 +259,9 @@ export default function Programs() {
                     <p style={{ fontSize: "11px", letterSpacing: "0.12em", color: "#999", marginBottom: "16px", borderBottom: "1px solid rgba(0,0,0,0.10)", paddingBottom: "8px" }}>主な内容・カリキュラム</p>
                     <ol style={{ listStyle: "none", padding: 0 }}>
                       {p.curriculum.map((c, i) => (
-                        <li key={i} style={{ fontSize: "14px", lineHeight: 1.9, color: "#444", display: "flex", gap: "10px" }}>
-                          <span style={{ color: "#bbb", minWidth: "20px" }}>{String(i + 1).padStart(2, "0")}</span>{c}
+                        <li key={i} style={{ fontSize: "14px", lineHeight: 1.9, color: "#444", display: "grid", gridTemplateColumns: "24px 1fr", gap: "8px" }}>
+                          <span style={{ color: "#bbb" }}>{String(i + 1).padStart(2, "0")}</span>
+                          <span>{c}</span>
                         </li>
                       ))}
                     </ol>

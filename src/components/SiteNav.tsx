@@ -21,11 +21,27 @@ interface SiteNavProps {
 
 export default function SiteNav({ activeHref }: SiteNavProps) {
   const [open, setOpen] = useState(false);
+  const [showNav, setShowNav] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY < 50) {
+        setShowNav(true);
+      } else {
+        setShowNav(window.scrollY < lastScrollY);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
     <>
@@ -34,7 +50,9 @@ export default function SiteNav({ activeHref }: SiteNavProps) {
         padding: "20px 24px",
         display: "flex", alignItems: "center", justifyContent: "space-between",
         background: "rgba(250,250,250,0.92)", backdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(0,0,0,0.08)", ...S.sans
+        borderBottom: "1px solid rgba(0,0,0,0.08)", ...S.sans,
+        transform: showNav ? "translateY(0)" : "translateY(-100%)",
+        transition: "transform 0.3s ease-in-out"
       }} id="main-nav">
         <Link href="/" style={{ ...S.serif, fontSize: "18px", fontWeight: 500, color: "#111" }}>
           理想と実践
