@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Footer from "@/components/Footer";
 import { Metadata } from "next";
 import SiteNav from "@/components/SiteNav";
 
@@ -170,20 +171,7 @@ export default function LHMP() {
       </section>
 
       {/* Footer */}
-      <footer style={{ borderTop: "1px solid rgba(0,0,0,0.12)", padding: "40px 48px", ...S.sans }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
-          <div style={{ display: "flex", gap: "32px" }}>
-            <Link href="/" style={{ ...S.serif, fontSize: "15px", fontWeight: 500 }}>理想と実践</Link>
-            <Link href="/programs" style={{ fontSize: "13px", color: "#666" }}>研修一覧</Link>
-            <Link href="/contact" style={{ fontSize: "13px", color: "#666" }}>お問い合わせ</Link>
-          </div>
-          <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-            <span style={{ fontSize: "12px", color: "#999" }}>思想監修：</span>
-            <a href="https://hakuyu.ltd" target="_blank" rel="noopener noreferrer" style={{ fontSize: "13px", color: "#666" }}>白裕（Hakuyu）</a>
-            <span style={{ fontSize: "12px", color: "#999" }}>© 2026 白裕</span>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

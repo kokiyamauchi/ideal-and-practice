@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Footer from "@/components/Footer";
 import { useSearchParams } from "next/navigation";
 import SiteNav from "@/components/SiteNav";
 import { Suspense, useEffect } from "react";
@@ -98,15 +99,7 @@ export default function Contact() {
       </section>
 
       {/* ── Footer ── */}
-      <footer style={{
-        borderTop: "1px solid rgba(0,0,0,0.10)",
-        padding: "40px 24px",
-        textAlign: "center",
-        fontSize: "0.8rem",
-        opacity: 0.45
-      }}>
-        <p>© 2026 理想と実践 | 白裕（Hakuyu）</p>
-      </footer>
+      <Footer />
     </main>
   );
 }

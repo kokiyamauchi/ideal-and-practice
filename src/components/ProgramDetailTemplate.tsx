@@ -2,6 +2,7 @@
 // 全研修詳細ページで使う共通テンプレート
 
 import Link from "next/link";
+import Footer from "@/components/Footer";
 import SiteNav from "@/components/SiteNav";
 import type { Program } from "@/lib/programs-data";
 import { programs } from "@/lib/programs-data";
@@ -323,16 +324,7 @@ export default function ProgramDetailTemplate({ program: p }: { program: Program
       </section>
 
       {/* Footer */}
-      <footer style={{ borderTop: "1px solid rgba(0,0,0,0.12)", padding: "40px 48px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
-          <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
-            <Link href="/" style={{ ...S.serif, fontSize: "15px", fontWeight: 500 }}>理想と実践</Link>
-            <Link href="/programs" style={{ fontSize: "13px", color: "#666" }}>研修一覧</Link>
-            <Link href="/contact" style={{ fontSize: "13px", color: "#666" }}>お問い合わせ</Link>
-          </div>
-          <span style={{ fontSize: "12px", color: "#999" }}>© 2026 白裕</span>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

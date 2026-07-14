@@ -116,10 +116,14 @@ a { color: inherit; text-decoration: none; transition: opacity 0.2s; }
   .l-grid, .s-hero__grid, .c-grid {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
+  }  /* Reset inline padding on non-card grid children when collapsed to 1 column */
+  div[style*="grid-template-columns"] > div:not(.c-card):not(.program-card):not([style*="background"]),
+  div[style*="display: grid"] > div:not(.c-card):not(.program-card):not([style*="background"]) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    border-left: none !important;
   }
-
-
-
 
   /* Force display block on some very wide elements if needed */
   div[style*="width:"] {
